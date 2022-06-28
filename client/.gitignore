@@ -1,0 +1,11 @@
+*.csproj
+*.json
+*.meta
+/Logs
+/Library
+/obj
+/Temp
+/UserSettings
+/ProjectSettings
+/Packages
+
