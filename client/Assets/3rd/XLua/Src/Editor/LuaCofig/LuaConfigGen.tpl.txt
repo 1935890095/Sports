@@ -1,0 +1,48 @@
+-- <%=dbname%>
+<%
+local Json = require "lib.Json"
+
+local ret = "return "
+local charS, charE = "   ", "\n"
+local tbl = Json.decode(jsonstr)
+ret = ret .. charE
+
+local function exportstring(s)
+    return string.format("%q", s)
+end
+
+local function exporttable(t)
+    local result = "{"
+    for k, v in pairs(t) do
+        -- key
+        local kstype = type(k)
+        local str = ""
+        if kstype == "string" then
+            local numKey = tonumber(k)
+            if numKey then
+                str = "[" .. numKey .. "]="
+            else
+                str = "[" .. exportstring(k) .. "]="
+            end
+        elseif kstype == "number" then
+            str = "[" .. tostring(k) .. "]="
+        end
+        -- value
+        if str ~= "" then
+            local stype = type(v)
+            if stype == "table" then
+                result = result .. str .. exporttable(v) .. ","
+            elseif stype == "string" then
+                result = result .. str .. exportstring(v) .. ","
+            elseif stype == "number" then
+                result = result .. str .. tostring(v) .. ","
+            else
+                result = result .. str .. tostring(v) .. ","
+            end
+        end
+    end
+    return result .. "}"
+end
+ret = ret .. exporttable(tbl)
+%>
+<%=ret%>
