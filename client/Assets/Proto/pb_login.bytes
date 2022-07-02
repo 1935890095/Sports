@@ -1,21 +1,0 @@
-
-Œ
-./login.protoProto.Login"
-C2SPing
-Index (RIndex"
-S2CPong
-Index (RIndex"«
-C2SLoginRequest
-Account (	RAccount
-Password (	RPassword
-Version (	RVersion
-DeviceId (	RDeviceId
-Os (	ROs
-	OsVersion (	R	OsVersion"~
-S2CLoginResult
-Status (	RStatus
-Account (	RAccount
-Password (	RPassword
-
-ZoneOffset (R
-ZoneOffset

@@ -1,2 +1,0 @@
-E:\Unity\Sports\client\Dll\Asset\obj\Debug\Asset.csproj.AssemblyReference.cache
-E:\Unity\Sports\client\Dll\Asset\obj\Debug\Asset.csproj.CoreCompileInputs.cache

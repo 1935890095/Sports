@@ -1,3 +1,0 @@
-E:\Unity\Sports\client\Dll\Core\obj\Debug\net40\Core.csproj.AssemblyReference.cache
-E:\Unity\Sports\client\Dll\Core\obj\Debug\net40\Core.GeneratedMSBuildEditorConfig.editorconfig
-E:\Unity\Sports\client\Dll\Core\obj\Debug\net40\Core.csproj.CoreCompileInputs.cache
