@@ -29,16 +29,16 @@ namespace ZF.Core.Scene
 				string asset_path = dir + "/" + name + "." + ext;
 				AssetBundleCreateRequest request = AssetBundle.LoadFromFileAsync(PathExt.MakeLoadPath(asset_path));
 				float progress = 0f;
-				while (!((AsyncOperation)request).get_isDone())
+				while (!((AsyncOperation)request).isDone)
 				{
-					if (progress != ((AsyncOperation)request).get_progress())
+					if (progress != ((AsyncOperation)request).progress)
 					{
-						progress = ((AsyncOperation)request).get_progress();
+						progress = ((AsyncOperation)request).progress;
 						option.OnInvoke(this, load: true, done: false, progress);
 					}
 					yield return null;
 				}
-				asset_bundle = request.get_assetBundle();
+				asset_bundle = request.assetBundle;
 			}
 			option.OnInvoke(this, load: true, done: true, 1f);
 		}
@@ -48,22 +48,22 @@ namespace ZF.Core.Scene
 			option.OnInvoke(this, load: false, done: false, 0f);
 			while (true)
 			{
-				Scene activeScene = SceneManager.GetActiveScene();
-				if (!(((Scene)(ref activeScene)).get_name() == name))
+				UnityEngine.SceneManagement.Scene activeScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+				if (!((activeScene).name == name))
 				{
 					break;
 				}
 				yield return null;
 			}
-			int count = SceneManager.get_sceneCount();
+			int count = UnityEngine.SceneManagement.SceneManager.sceneCount;
 			if (count > 1)
 			{
 				bool find = false;
 				for (int i = 0; i < count; i++)
 				{
 					string text = name;
-					Scene sceneAt = SceneManager.GetSceneAt(i);
-					if (text.Equals(((Scene)(ref sceneAt)).get_name()))
+					UnityEngine.SceneManagement.Scene sceneAt = UnityEngine.SceneManagement.SceneManager.GetSceneAt(i);
+					if (text.Equals((sceneAt).name))
 					{
 						find = true;
 						break;
@@ -71,20 +71,20 @@ namespace ZF.Core.Scene
 				}
 				if (find)
 				{
-					AsyncOperation request = SceneManager.UnloadSceneAsync(name);
+					AsyncOperation request = UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(name);
 					float progress = 0f;
-					while (request != null && !request.get_isDone())
+					while (request != null && !request.isDone)
 					{
-						if (progress != request.get_progress())
+						if (progress != request.progress)
 						{
-							progress = request.get_progress();
+							progress = request.progress;
 							option.OnInvoke(this, load: false, done: false, progress);
 						}
 						yield return null;
 					}
 				}
 			}
-			if ((Object)(object)asset_bundle != (Object)null)
+			if (asset_bundle != null)
 			{
 				asset_bundle.Unload(true);
 				asset_bundle = null;

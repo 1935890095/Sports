@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace ZF.UI
 {
@@ -17,7 +19,7 @@ namespace ZF.UI
 
 		public Action<GameObject> RemoveMethod = delegate(GameObject item)
 		{
-			Object.Destroy((Object)(object)item);
+			Object.Destroy(item);
 		};
 
 		[Tooltip("内部组件，请勿修改。")]
@@ -66,7 +68,7 @@ namespace ZF.UI
 			set
 			{
 				_padding = value;
-				((LayoutGroup)_content).set_padding(_padding);
+				((LayoutGroup)_content).padding = (_padding);
 				CalcContentLength();
 			}
 		}
@@ -80,7 +82,7 @@ namespace ZF.UI
 			set
 			{
 				_spacing = value;
-				_content.set_spacing(_spacing);
+				_content.spacing = (_spacing);
 				CalcContentLength();
 			}
 		}
@@ -88,40 +90,39 @@ namespace ZF.UI
 		public int ItemCount => _items.Count;
 
 		public ListView()
-			: this()
 		{
 		}
 
 		public void init()
 		{
 			InitLayout();
-			((LayoutGroup)_content).set_padding(_padding);
-			_content.set_spacing(_spacing);
+			((LayoutGroup)_content).padding = (_padding);
+			_content.spacing =(_spacing);
 			CalcContentLength();
 		}
 
 		public void validate()
 		{
 			InitLayout();
-			((LayoutGroup)_content).set_padding(_padding);
-			_content.set_spacing(_spacing);
+			((LayoutGroup)_content).padding = (_padding);
+			_content.spacing = (_spacing);
 			CalcContentLength();
 		}
 
 		public void AddItem(GameObject item, int index = -1)
 		{
-			item.get_transform().SetParent(((Component)_content).get_transform());
+			item.transform.SetParent(((Component)_content).transform);
 			if (index < 0)
 			{
 				if (NewElementOnTop)
 				{
 					_items.Insert(0, item);
-					item.get_transform().SetAsFirstSibling();
+					item.transform.SetAsFirstSibling();
 				}
 				else
 				{
 					_items.Add(item);
-					item.get_transform().SetAsLastSibling();
+					item.transform.SetAsLastSibling();
 				}
 			}
 			else
@@ -129,12 +130,12 @@ namespace ZF.UI
 				if (index > ItemCount)
 				{
 					index = ItemCount;
-					Debug.LogWarningFormat("ListView.AddItem()：给定索引超出ListView元素数量，被自动裁剪为【{0}】。", new object[1] { index });
+					Debug.LogWarningFormat("ListView.AddItem：给定索引超出ListView元素数量，被自动裁剪为【{0}】。", new object[1] { index });
 				}
 				_items.Insert(index, item);
-				item.get_transform().SetSiblingIndex(index);
+				item.transform.SetSiblingIndex(index);
 			}
-			AdjustContentLength(item.get_transform(), 1);
+			AdjustContentLength(item.transform, 1);
 			if (AnimationTime > 0f)
 			{
 				((MonoBehaviour)this).StartCoroutine(IEAddItemAnim(item));
@@ -157,7 +158,7 @@ namespace ZF.UI
 			if (flag)
 			{
 				_items.Remove(item);
-				AdjustContentLength(item.get_transform(), -1);
+				AdjustContentLength(item.transform, -1);
 				RemoveListItem(item);
 			}
 			return flag;
@@ -167,12 +168,12 @@ namespace ZF.UI
 		{
 			if (index < 0 || index >= _items.Count)
 			{
-				Debug.LogWarningFormat("ListView.RemoveListItem()：没有索引为【{0}】的元素，移除失败。", new object[1] { index });
+				Debug.LogWarningFormat("ListView.RemoveListItem：没有索引为【{0}】的元素，移除失败。", new object[1] { index });
 				return false;
 			}
 			GameObject val = _items[index];
 			_items.RemoveAt(index);
-			AdjustContentLength(val.get_transform(), -1);
+			AdjustContentLength(val.transform, -1);
 			RemoveListItem(val);
 			return true;
 		}
@@ -200,7 +201,7 @@ namespace ZF.UI
 			{
 				GameObject val = _items[num];
 				_items.RemoveAt(num);
-				AdjustContentLength(val.get_transform(), -1);
+				AdjustContentLength(val.transform, -1);
 				RemoveListItem(val);
 			}
 			return count;
@@ -258,11 +259,11 @@ namespace ZF.UI
 			percent = Mathf.Clamp01(percent);
 			if (_layout == Layout.Vertical)
 			{
-				_scrollRect.set_verticalNormalizedPosition(percent);
+				_scrollRect.verticalNormalizedPosition = (percent);
 			}
 			else
 			{
-				_scrollRect.set_horizontalNormalizedPosition(percent);
+				_scrollRect.horizontalNormalizedPosition = (percent);
 			}
 		}
 
@@ -271,7 +272,7 @@ namespace ZF.UI
 			_items.Sort(comparison);
 			for (int i = 0; i < _items.Count; i++)
 			{
-				_items[i].get_transform().SetSiblingIndex(i);
+				_items[i].transform.SetSiblingIndex(i);
 			}
 		}
 
@@ -282,22 +283,22 @@ namespace ZF.UI
 			_scrollRect = ((Component)this).GetComponent<ScrollRect>();
 			if (_layout == Layout.Vertical)
 			{
-				_scrollRect.set_vertical(true);
-				_scrollRect.set_horizontal(false);
-				_003F val = _scrollRect;
-				Transform transform = ((Component)componentInChildren).get_transform();
-				((ScrollRect)val).set_content((RectTransform)(object)((transform is RectTransform) ? transform : null));
-				((Component)componentInChildren).get_gameObject().SetActive(true);
+				_scrollRect.vertical = (true);
+				_scrollRect.horizontal = (false);
+				var _val = _scrollRect;
+				Transform transform = ((Component)componentInChildren).transform;
+				((ScrollRect)_val).content = ((RectTransform)(object)((transform is RectTransform) ? transform : null));
+				((Component)componentInChildren).gameObject.SetActive(true);
 				_content = (HorizontalOrVerticalLayoutGroup)(object)componentInChildren;
 			}
 			else
 			{
-				_scrollRect.set_vertical(false);
-				_scrollRect.set_horizontal(true);
-				_003F val2 = _scrollRect;
-				Transform transform2 = ((Component)componentInChildren2).get_transform();
-				((ScrollRect)val2).set_content((RectTransform)(object)((transform2 is RectTransform) ? transform2 : null));
-				((Component)componentInChildren2).get_gameObject().SetActive(true);
+				_scrollRect.vertical = (false);
+				_scrollRect.horizontal = (true);
+				var val2 = _scrollRect;
+				Transform transform2 = ((Component)componentInChildren2).transform;
+				((ScrollRect)val2).content = ((RectTransform)(object)((transform2 is RectTransform) ? transform2 : null));
+				((Component)componentInChildren2).gameObject.SetActive(true);
 				_content = (HorizontalOrVerticalLayoutGroup)(object)componentInChildren2;
 			}
 		}
@@ -312,16 +313,16 @@ namespace ZF.UI
 			//IL_0105: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0129: Unknown result type (might be due to invalid IL or missing references)
 			float num = 0f;
-			int childCount = ((Component)_content).get_transform().get_childCount();
+			int childCount = ((Component)_content).transform.childCount;
 			num += (float)(childCount - 1) * _spacing;
-			IEnumerator enumerator = ((Component)_content).get_transform().GetEnumerator();
+			IEnumerator enumerator = ((Component)_content).transform.GetEnumerator();
 			try
 			{
 				while (enumerator.MoveNext())
 				{
 					object current = enumerator.Current;
 					RectTransform val = (RectTransform)((current is RectTransform) ? current : null);
-					num = ((_layout != 0) ? (num + val.get_sizeDelta().x) : (num + val.get_sizeDelta().y));
+					num = ((_layout != 0) ? (num + val.sizeDelta.x) : (num + val.sizeDelta.y));
 				}
 			}
 			finally
@@ -332,10 +333,10 @@ namespace ZF.UI
 					disposable.Dispose();
 				}
 			}
-			num = ((_layout != 0) ? (num + (float)(_padding.get_left() + _padding.get_right())) : (num + (float)(_padding.get_top() + _padding.get_bottom())));
-			Transform transform = ((Component)_content).get_transform();
+			num = ((_layout != 0) ? (num + (float)(_padding.left + _padding.right)) : (num + (float)(_padding.top + _padding.bottom)));
+			Transform transform = ((Component)_content).transform;
 			RectTransform val2 = (RectTransform)(object)((transform is RectTransform) ? transform : null);
-			Vector2 sizeDelta = val2.get_sizeDelta();
+			Vector2 sizeDelta = val2.sizeDelta;
 			if (_layout == Layout.Vertical)
 			{
 				sizeDelta.y = num;
@@ -344,7 +345,7 @@ namespace ZF.UI
 			{
 				sizeDelta.x = num;
 			}
-			val2.set_sizeDelta(sizeDelta);
+			val2.sizeDelta = (sizeDelta);
 		}
 
 		private void AdjustContentLength(Transform itemTrans, int power)
@@ -361,17 +362,17 @@ namespace ZF.UI
 				RectTransform val = (RectTransform)(object)((itemTrans is RectTransform) ? itemTrans : null);
 				if (_layout == Layout.Vertical)
 				{
-					_itemLenght = val.get_sizeDelta().y;
+					_itemLenght = val.sizeDelta.y;
 				}
 				else
 				{
-					_itemLenght = val.get_sizeDelta().x;
+					_itemLenght = val.sizeDelta.x;
 				}
 			}
 			power = ((power >= 0) ? 1 : (-1));
-			Transform transform = ((Component)_content).get_transform();
+			Transform transform = ((Component)_content).transform;
 			RectTransform val2 = (RectTransform)(object)((transform is RectTransform) ? transform : null);
-			Vector2 sizeDelta = val2.get_sizeDelta();
+			Vector2 sizeDelta = val2.sizeDelta;
 			if (_layout == Layout.Vertical)
 			{
 				sizeDelta.y += (_itemLenght + _spacing) * (float)power;
@@ -380,7 +381,7 @@ namespace ZF.UI
 			{
 				sizeDelta.x += (_itemLenght + _spacing) * (float)power;
 			}
-			val2.set_sizeDelta(sizeDelta);
+			val2.sizeDelta = (sizeDelta);
 		}
 
 		private void RemoveListItem(GameObject item)
@@ -390,35 +391,35 @@ namespace ZF.UI
 				((MonoBehaviour)this).StartCoroutine(IERemoveItemAnim(item));
 				return;
 			}
-			item.get_transform().SetParent((Transform)null);
+			item.transform.SetParent((Transform)null);
 			RemoveMethod(item);
 		}
 
 		private IEnumerator IEAddItemAnim(GameObject item)
 		{
-			Transform transform = item.get_transform();
+			Transform transform = item.transform;
 			RectTransform rect = (RectTransform)(object)((transform is RectTransform) ? transform : null);
 			float originLength;
 			Vector2 currSize;
 			Vector2 currScale;
 			if (_layout == Layout.Vertical)
 			{
-				originLength = rect.get_sizeDelta().y;
-				currSize = new Vector2(rect.get_sizeDelta().x, 0f);
-				currScale = Vector2.op_Implicit(new Vector3(1f, 0f, 1f));
+				originLength = rect.sizeDelta.y;
+				currSize = new Vector2(rect.sizeDelta.x, 0f);
+				currScale = (Vector2)(new Vector3(1f, 0f, 1f));
 			}
 			else
 			{
-				originLength = rect.get_sizeDelta().x;
-				currSize = new Vector2(0f, rect.get_sizeDelta().y);
-				currScale = Vector2.op_Implicit(new Vector3(0f, 1f, 1f));
+				originLength = rect.sizeDelta.x;
+				currSize = new Vector2(0f, rect.sizeDelta.y);
+				currScale = (Vector2)(new Vector3(0f, 1f, 1f));
 			}
 			float timer = 0f;
-			rect.set_sizeDelta(currSize);
-			((Transform)rect).set_localScale(new Vector3(currSize.x, currSize.y, 1f));
+			rect.sizeDelta = (currSize);
+			((Transform)rect).localScale = (new Vector3(currSize.x, currSize.y, 1f));
 			while (timer < AnimationTime)
 			{
-				timer += Time.get_deltaTime();
+				timer += Time.deltaTime;
 				if (_layout == Layout.Vertical)
 				{
 					currScale.y = timer / AnimationTime;
@@ -429,8 +430,8 @@ namespace ZF.UI
 					currScale.x = timer / AnimationTime;
 					currSize.x = originLength * currScale.x;
 				}
-				((Transform)rect).set_localScale(new Vector3(currScale.x, currScale.y, 1f));
-				rect.set_sizeDelta(currSize);
+				((Transform)rect).localScale = (new Vector3(currScale.x, currScale.y, 1f));
+				rect.sizeDelta = (currSize);
 				yield return null;
 			}
 			if (_layout == Layout.Vertical)
@@ -443,33 +444,33 @@ namespace ZF.UI
 				currScale.x = 1f;
 				currSize.x = originLength;
 			}
-			((Transform)rect).set_localScale(new Vector3(currScale.x, currScale.y, 1f));
-			rect.set_sizeDelta(currSize);
+			((Transform)rect).localScale = (new Vector3(currScale.x, currScale.y, 1f));
+			rect.sizeDelta = (currSize);
 		}
 
 		private IEnumerator IERemoveItemAnim(GameObject item)
 		{
-			Transform transform = item.get_transform();
+			Transform transform = item.transform;
 			RectTransform rect = (RectTransform)(object)((transform is RectTransform) ? transform : null);
 			float originLength;
 			Vector2 currSize;
 			Vector2 currScale;
 			if (_layout == Layout.Vertical)
 			{
-				originLength = rect.get_sizeDelta().y;
-				currSize = rect.get_sizeDelta();
-				currScale = Vector2.op_Implicit(((Transform)rect).get_localScale());
+				originLength = rect.sizeDelta.y;
+				currSize = rect.sizeDelta;
+				currScale = (Vector2)(((Transform)rect).localScale);
 			}
 			else
 			{
-				originLength = rect.get_sizeDelta().x;
-				currSize = rect.get_sizeDelta();
-				currScale = Vector2.op_Implicit(((Transform)rect).get_localScale());
+				originLength = rect.sizeDelta.x;
+				currSize = rect.sizeDelta;
+				currScale = (Vector2)(((Transform)rect).localScale);
 			}
 			float timer = 0f;
 			while (timer < AnimationTime)
 			{
-				timer += Time.get_deltaTime();
+				timer += Time.deltaTime;
 				if (_layout == Layout.Vertical)
 				{
 					currScale.y = 1f - timer / AnimationTime;
@@ -480,8 +481,8 @@ namespace ZF.UI
 					currScale.x = 1f - timer / AnimationTime;
 					currSize.x = originLength * currScale.x;
 				}
-				((Transform)rect).set_localScale(new Vector3(currScale.x, currScale.y, 1f));
-				rect.set_sizeDelta(currSize);
+				((Transform)rect).localScale = (new Vector3(currScale.x, currScale.y, 1f));
+				rect.sizeDelta = currSize;
 				yield return null;
 			}
 			((Transform)rect).SetParent((Transform)null);

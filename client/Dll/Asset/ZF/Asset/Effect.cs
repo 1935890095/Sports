@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ZF.Asset.Properties;
 using ZF.Core.Render;
+using Object = UnityEngine.Object;
 
 namespace ZF.Asset
 {
@@ -114,7 +115,7 @@ namespace ZF.Asset
 					duration = property.duration;
 				}
 				base.renderers = property.renderers;
-				if (property.scale != 1f && base.scale == Vector3.get_one())
+				if (property.scale != 1f && base.scale == Vector3.one)
 				{
 					float num = property.scale;
 					base.scale = new Vector3(num, num, num);
@@ -129,10 +130,10 @@ namespace ZF.Asset
 			foreach (ParticleSystem val in array)
 			{
 				Dictionary<int, float> dictionary = speeds;
-				MainModule main = val.get_main();
-				int hashCode = ((object)(MainModule)(ref main)).GetHashCode();
-				MainModule main2 = val.get_main();
-				dictionary[hashCode] = ((MainModule)(ref main2)).get_simulationSpeed();
+				ParticleSystem.MainModule main = val.main;
+				int hashCode = ((object)(ParticleSystem.MainModule)main).GetHashCode();
+				ParticleSystem.MainModule main2 = val.main;
+				dictionary[hashCode] = ((ParticleSystem.MainModule) main2).simulationSpeed;
 			}
 			Animation[] array2 = animations;
 			foreach (Animation val2 in array2)
@@ -147,7 +148,7 @@ namespace ZF.Asset
 					while (enumerator.MoveNext())
 					{
 						AnimationState val3 = (AnimationState)enumerator.Current;
-						speeds[((object)val3).GetHashCode()] = val3.get_speed();
+						speeds[((object)val3).GetHashCode()] = val3.speed;
 					}
 				}
 				finally
@@ -164,7 +165,7 @@ namespace ZF.Asset
 			{
 				if ((Object)(object)val4 != (Object)null)
 				{
-					speeds[((object)val4).GetHashCode()] = val4.get_speed();
+					speeds[((object)val4).GetHashCode()] = val4.speed;
 				}
 			}
 			if (status == Status.Playing)
@@ -206,10 +207,10 @@ namespace ZF.Asset
 					ParticleSystem val = particle_systems[i];
 					if (!((Object)(object)val == (Object)null))
 					{
-						MainModule main = val.get_main();
-						float num = speeds[((object)(MainModule)(ref main)).GetHashCode()];
-						((MainModule)(ref main)).set_simulationSpeed(num * speed_);
-						val.set_time(0f);
+						ParticleSystem.MainModule main = val.main;
+						float num = speeds[((object)(ParticleSystem.MainModule) main).GetHashCode()];
+						main.simulationSpeed = (num * speed_);
+						val.time = (0f);
 						val.Play();
 					}
 				}
@@ -230,7 +231,7 @@ namespace ZF.Asset
 						{
 							AnimationState val3 = (AnimationState)enumerator.Current;
 							float num2 = speeds[((object)val3).GetHashCode()];
-							val3.set_speed(num2 * speed_);
+							val3.speed = (num2 * speed_);
 						}
 					}
 					finally
@@ -250,12 +251,12 @@ namespace ZF.Asset
 				for (int k = 0; k < animators.Length; k++)
 				{
 					Animator val4 = animators[k];
-					if (!((Object)(object)val4 == (Object)null) && !((Object)(object)val4.get_runtimeAnimatorController() == (Object)null))
+					if (!((Object)(object)val4 == (Object)null) && !((Object)(object)val4.runtimeAnimatorController == (Object)null))
 					{
 						float num3 = speeds[((object)val4).GetHashCode()];
-						val4.set_speed(num3 * speed_);
+						val4.speed = (num3 * speed_);
 						AnimatorStateInfo currentAnimatorStateInfo = val4.GetCurrentAnimatorStateInfo(0);
-						val4.Play(((AnimatorStateInfo)(ref currentAnimatorStateInfo)).get_shortNameHash(), 0, 0f);
+						val4.Play(((AnimatorStateInfo)currentAnimatorStateInfo).shortNameHash, 0, 0f);
 					}
 				}
 			}
@@ -279,8 +280,8 @@ namespace ZF.Asset
 					ParticleSystem val = particle_systems[i];
 					if (!((Object)(object)val == (Object)null))
 					{
-						MainModule main = val.get_main();
-						((MainModule)(ref main)).set_simulationSpeed(0f);
+						ParticleSystem.MainModule main = val.main;
+						main.simulationSpeed = (0f);
 					}
 				}
 			}
@@ -299,7 +300,7 @@ namespace ZF.Asset
 						while (enumerator.MoveNext())
 						{
 							AnimationState val3 = (AnimationState)enumerator.Current;
-							val3.set_speed(0f);
+							val3.speed = (0f);
 						}
 					}
 					finally
@@ -319,7 +320,7 @@ namespace ZF.Asset
 					Animator val4 = animators[k];
 					if (!((Object)(object)val4 == (Object)null))
 					{
-						val4.set_speed(0f);
+						val4.speed = (0f);
 					}
 				}
 			}
@@ -343,9 +344,9 @@ namespace ZF.Asset
 					ParticleSystem val = particle_systems[i];
 					if (!((Object)(object)val == (Object)null))
 					{
-						MainModule main = val.get_main();
-						float num = speeds[((object)(MainModule)(ref main)).GetHashCode()];
-						((MainModule)(ref main)).set_simulationSpeed(num * speed_);
+						ParticleSystem.MainModule main = val.main;
+						float num = speeds[((object)(ParticleSystem.MainModule)main).GetHashCode()];
+						main.simulationSpeed = (num * speed_);
 					}
 				}
 			}
@@ -365,7 +366,7 @@ namespace ZF.Asset
 						{
 							AnimationState val3 = (AnimationState)enumerator.Current;
 							float num2 = speeds[((object)val3).GetHashCode()];
-							val3.set_speed(num2 * speed_);
+							val3.speed = (num2 * speed_);
 						}
 					}
 					finally
@@ -386,7 +387,7 @@ namespace ZF.Asset
 					if (!((Object)(object)val4 == (Object)null))
 					{
 						float num3 = speeds[((object)val4).GetHashCode()];
-						val4.set_speed(num3 * speed_);
+						val4.speed = (num3 * speed_);
 					}
 				}
 			}
@@ -421,8 +422,8 @@ namespace ZF.Asset
 					Animation val2 = animations[j];
 					if (!((Object)(object)val2 == (Object)null))
 					{
-						AnimationState val3 = val2.get_Item(((Object)val2.get_clip()).get_name());
-						val3.set_time(val3.get_time() + time);
+						AnimationState val3 = val2.Item(((Object)val2.clip).name);
+						val3.time = (val3.time + time);
 						val2.Sample();
 					}
 				}
@@ -439,7 +440,7 @@ namespace ZF.Asset
 					AnimatorClipInfo[] currentAnimatorClipInfo = val4.GetCurrentAnimatorClipInfo(0);
 					for (int l = 0; l < currentAnimatorClipInfo.Length; l++)
 					{
-						((AnimatorClipInfo)(ref currentAnimatorClipInfo[l])).get_clip().SampleAnimation(((Component)val4).get_gameObject(), elapse);
+						((AnimatorClipInfo)currentAnimatorClipInfo[l]).clip.SampleAnimation(((Component)val4).gameObject, elapse);
 					}
 				}
 			}
@@ -469,15 +470,15 @@ namespace ZF.Asset
 			{
 				return;
 			}
-			if (billbord && (Object)(object)base.gameObject != (Object)null && Object.op_Implicit((Object)(object)Camera.get_main()))
+			if (billbord && base.gameObject != null && Camera.main)
 			{
-				Vector3 val = ((Component)Camera.get_main()).get_transform().get_position() - base.gameObject.get_transform().get_position();
+				Vector3 val = ((Component)Camera.main).transform.position - base.gameObject.transform.position;
 				val.y = 0f;
 				base.rotation = Quaternion.LookRotation(val);
 			}
 			if (duration > 0f)
 			{
-				elapse += Time.get_deltaTime() * speed;
+				elapse += Time.deltaTime * speed;
 				if (elapse >= duration)
 				{
 					Stop();

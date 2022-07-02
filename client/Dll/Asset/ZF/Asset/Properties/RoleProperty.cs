@@ -3,6 +3,7 @@ using System.Collections;
 using System.Text;
 using UnityEngine;
 using ZF.Asset.Attributes;
+using Object = UnityEngine.Object;
 
 namespace ZF.Asset.Properties
 {
@@ -44,12 +45,12 @@ namespace ZF.Asset.Properties
 			{
 				return validator.Validate(this);
 			}
-			Bounds val = CalcBounds(((Component)this).get_gameObject(), "weapon");
+			Bounds val = CalcBounds(((Component)this).gameObject, "weapon");
 			if (val != bounds)
 			{
 				bounds = val;
 			}
-			renderers = ((Component)this).get_gameObject().GetComponentsInChildren<Renderer>(true);
+			renderers = ((Component)this).gameObject.GetComponentsInChildren<Renderer>(true);
 			Collect(DependFlags.Shader);
 			return true;
 		}
@@ -78,20 +79,20 @@ namespace ZF.Asset.Properties
 			//IL_0064: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0066: Unknown result type (might be due to invalid IL or missing references)
 			//IL_006d: Unknown result type (might be due to invalid IL or missing references)
-			Vector3 max = Vector3.get_zero();
-			Vector3 min = Vector3.get_zero();
+			Vector3 max = Vector3.zero;
+			Vector3 min = Vector3.zero;
 			Renderer component = go.GetComponent<Renderer>();
 			if ((Object)(object)component != (Object)null)
 			{
-				Bounds val = component.get_bounds();
-				max = ((Bounds)(ref val)).get_max();
-				min = ((Bounds)(ref val)).get_min();
+				Bounds val = component.bounds;
+				max = ((Bounds)val).max;
+				min = ((Bounds) val).min;
 			}
-			RecurisionCalcBounds(go.get_transform(), ref max, ref min, ignoreCalcNodeName);
+			RecurisionCalcBounds(go.transform(), ref max, ref min, ignoreCalcNodeName);
 			Vector3 val2 = max - min;
 			Vector3 val3 = (max + min) / 2f;
 			Bounds result = default(Bounds);
-			((Bounds)(ref result))._002Ector(val3, val2);
+			((Bounds)result)._002Ector(val3, val2);
 			return result;
 		}
 
@@ -131,7 +132,7 @@ namespace ZF.Asset.Properties
 			//IL_0196: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01ad: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01b2: Unknown result type (might be due to invalid IL or missing references)
-			if (ts.get_childCount() <= 0)
+			if (ts.childCount <= 0)
 			{
 				return;
 			}
@@ -141,42 +142,42 @@ namespace ZF.Asset.Properties
 				while (enumerator.MoveNext())
 				{
 					Transform val = (Transform)enumerator.Current;
-					if (!string.IsNullOrEmpty(ignoreCalcNodeName) && ignoreCalcNodeName == ((Object)val).get_name())
+					if (!string.IsNullOrEmpty(ignoreCalcNodeName) && ignoreCalcNodeName == ((Object)val).name)
 					{
 						continue;
 					}
 					Renderer component = ((Component)val).GetComponent<Renderer>();
 					if ((Object)(object)component != (Object)null)
 					{
-						Bounds val2 = component.get_bounds();
-						if (((Vector3)(ref max)).Equals(Vector3.get_zero()) && ((Vector3)(ref min)).Equals(Vector3.get_zero()))
+						Bounds val2 = component.bounds;
+						if (((Vector3)max).Equals(Vector3.zero) && ((Vector3)min).Equals(Vector3.zero))
 						{
-							max = ((Bounds)(ref val2)).get_max();
-							min = ((Bounds)(ref val2)).get_min();
+							max = ((Bounds)val2).max;
+							min = ((Bounds)val2).min;
 						}
-						if (((Bounds)(ref val2)).get_max().x > max.x)
+						if (((Bounds)val2).max.x > max.x)
 						{
-							max.x = ((Bounds)(ref val2)).get_max().x;
+							max.x = ((Bounds)val2).max.x;
 						}
-						if (((Bounds)(ref val2)).get_max().y > max.y)
+						if (((Bounds)val2).max.y > max.y)
 						{
-							max.y = ((Bounds)(ref val2)).get_max().y;
+							max.y = ((Bounds)val2).max.y;
 						}
-						if (((Bounds)(ref val2)).get_max().z > max.z)
+						if (((Bounds)val2).max.z > max.z)
 						{
-							max.z = ((Bounds)(ref val2)).get_max().z;
+							max.z = ((Bounds)val2).max.z;
 						}
-						if (((Bounds)(ref val2)).get_min().x < min.x)
+						if (((Bounds)val2).min.x < min.x)
 						{
-							min.x = ((Bounds)(ref val2)).get_min().x;
+							min.x = ((Bounds)val2).min.x;
 						}
-						if (((Bounds)(ref val2)).get_min().y < min.y)
+						if (((Bounds)val2).min.y < min.y)
 						{
-							min.y = ((Bounds)(ref val2)).get_min().y;
+							min.y = ((Bounds)val2).min.y;
 						}
-						if (((Bounds)(ref val2)).get_min().z < min.z)
+						if (((Bounds)val2).min.z < min.z)
 						{
-							min.z = ((Bounds)(ref val2)).get_min().z;
+							min.z = ((Bounds)val2).min.z;
 						}
 					}
 					RecurisionCalcBounds(val, ref max, ref min, ignoreCalcNodeName);
@@ -196,16 +197,16 @@ namespace ZF.Asset.Properties
 		{
 			int num = 0;
 			StringBuilder stringBuilder = new StringBuilder();
-			Transform val = node.get_transform();
-			while ((Object)(object)val != (Object)null && !((Object)(object)val == (Object)(object)root.get_transform()))
+			Transform val = node.transform;
+			while ((Object)(object)val != (Object)null && !((Object)(object)val == (Object)(object)root.transform))
 			{
-				stringBuilder.Insert(0, "/" + ((Object)val).get_name());
+				stringBuilder.Insert(0, "/" + ((Object)val).name);
 				if (++num == 100)
 				{
 					val = null;
 					break;
 				}
-				val = val.get_parent();
+				val = val.parent;
 			}
 			if ((Object)(object)val == (Object)null)
 			{

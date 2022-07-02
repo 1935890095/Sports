@@ -16,30 +16,30 @@ namespace ZF.Core.Util
 			//IL_0019: Unknown result type (might be due to invalid IL or missing references)
 			//IL_001b: Invalid comparison between Unknown and I4
 			path_prefix = new string[3];
-			RuntimePlatform platform = Application.get_platform();
+			RuntimePlatform platform = Application.platform;
 			if ((int)platform != 11)
 			{
 				if ((int)platform == 8)
 				{
-					path_prefix[0] = Application.get_persistentDataPath() + "/";
-					path_prefix[2] = Application.get_dataPath() + "/Raw/";
+					path_prefix[0] = Application.persistentDataPath + "/";
+					path_prefix[2] = Application.dataPath + "/Raw/";
 				}
-				else if (Application.get_isEditor())
+				else if (Application.isEditor)
 				{
-					path_prefix[0] = Application.get_dataPath() + "/../main.dir/";
-					path_prefix[1] = Application.get_dataPath() + "/";
-					path_prefix[2] = Application.get_streamingAssetsPath() + "/";
+					path_prefix[0] = Application.dataPath + "/../main.dir/";
+					path_prefix[1] = Application.dataPath + "/";
+					path_prefix[2] = Application.streamingAssetsPath + "/";
 				}
 				else
 				{
-					path_prefix[0] = Application.get_dataPath() + "/main.dir/";
-					path_prefix[2] = Application.get_streamingAssetsPath() + "/";
+					path_prefix[0] = Application.dataPath + "/main.dir/";
+					path_prefix[2] = Application.streamingAssetsPath + "/";
 				}
 			}
 			else
 			{
-				path_prefix[0] = Application.get_persistentDataPath() + "/";
-				path_prefix[2] = Application.get_dataPath() + "!assets/";
+				path_prefix[0] = Application.persistentDataPath + "/";
+				path_prefix[2] = Application.dataPath + "!assets/";
 			}
 		}
 
@@ -85,19 +85,19 @@ namespace ZF.Core.Util
 			{
 				return "file://" + text;
 			}
-			RuntimePlatform platform = Application.get_platform();
+			RuntimePlatform platform = Application.platform;
 			switch (platform - 8)
 			{
+			case RuntimePlatform.OSXEditor:
+				return "file://" + text;
+			case RuntimePlatform.OSXPlayer:
+				return "jar:file://" + text;
 			default:
 				if ((int)platform != 0)
 				{
 					return "file:///" + text;
 				}
 				goto case 0;
-			case 0:
-				return "file://" + text;
-			case 3:
-				return "jar:file://" + text;
 			}
 		}
 
@@ -116,7 +116,7 @@ namespace ZF.Core.Util
 			//IL_0006: Invalid comparison between Unknown and I4
 			//IL_000b: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0011: Invalid comparison between Unknown and I4
-			if ((int)Application.get_platform() == 7 || (int)Application.get_platform() == 2)
+			if ((int)Application.platform == 7 || (int)Application.platform == 2)
 			{
 				return Path.ChangeExtension(path, extension).Replace("\\", "/");
 			}
@@ -129,7 +129,7 @@ namespace ZF.Core.Util
 			//IL_0006: Invalid comparison between Unknown and I4
 			//IL_000b: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0011: Invalid comparison between Unknown and I4
-			if ((int)Application.get_platform() == 7 || (int)Application.get_platform() == 2)
+			if ((int)Application.platform == 7 || (int)Application.platform == 2)
 			{
 				return Path.Combine(path1, path2).Replace("\\", "/");
 			}
@@ -142,7 +142,7 @@ namespace ZF.Core.Util
 			//IL_0006: Invalid comparison between Unknown and I4
 			//IL_000b: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0011: Invalid comparison between Unknown and I4
-			if ((int)Application.get_platform() == 7 || (int)Application.get_platform() == 2)
+			if ((int)Application.platform == 7 || (int)Application.platform == 2)
 			{
 				return Path.GetDirectoryName(path).Replace("\\", "/");
 			}

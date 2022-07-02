@@ -5,19 +5,23 @@ namespace ZF.Asset.Attributes
 	public class AssetPathAttribute : DrawerAttribute
 	{
 		public string extension { get; private set; }
+		public string tooltip { get; private set; }
 
 		public Type type { get; private set; }
+		public string label{ get; private set; }
 
 		public AssetPathAttribute(string label, string tooltip, Type type)
-			: base(label, tooltip)
 		{
 			this.type = type;
+			this.label = label;
+			this.tooltip = tooltip;
 		}
 
 		public AssetPathAttribute(string label, string tooltip, string extension)
-			: base(label, tooltip)
 		{
 			this.extension = extension;
+			this.label = label;
+			this.tooltip = tooltip;
 		}
 	}
 }

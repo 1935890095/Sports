@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace ZF.Asset.Properties
 {
@@ -8,7 +9,6 @@ namespace ZF.Asset.Properties
 		public string[] bones = Array.Empty<string>();
 
 		public M2bProperty()
-			: this()
 		{
 		}
 
@@ -18,16 +18,16 @@ namespace ZF.Asset.Properties
 			{
 				return validator.Validate(this);
 			}
-			SkinnedMeshRenderer component = ((Component)this).get_gameObject().GetComponent<SkinnedMeshRenderer>();
+			SkinnedMeshRenderer component = ((Component)this).gameObject.GetComponent<SkinnedMeshRenderer>();
 			if ((Object)(object)component == (Object)null)
 			{
 				return false;
 			}
-			int num = component.get_bones().Length;
+			int num = component.bones.Length;
 			bones = new string[num];
 			for (int i = 0; i < num; i++)
 			{
-				bones[i] = ((Object)component.get_bones()[i]).get_name();
+				bones[i] = ((Object)component.bones[i]).name;
 			}
 			Debug.Log((object)("***** m2b count ***** " + num));
 			return true;

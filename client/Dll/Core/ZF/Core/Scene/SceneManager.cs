@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using ZF.Core.Logging;
+using ILogger = ZF.Core.Logging.ILogger;
 
 namespace ZF.Core.Scene
 {
@@ -190,20 +191,20 @@ namespace ZF.Core.Scene
 			scene.state = SceneState.Instantiating;
 			if (scene.option.additive)
 			{
-				AsyncOperation request2 = SceneManager.LoadSceneAsync(scene.name, (LoadSceneMode)1);
+				AsyncOperation request2 = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scene.name, LoadSceneMode.Additive);
 				if (scene.option.denySceneActivation)
 				{
-					request2.set_allowSceneActivation(false);
+					request2.allowSceneActivation = false;
 				}
 				yield return request2;
-				SceneManager.SetActiveScene(SceneManager.GetSceneByName(scene.name));
+				UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName(scene.name));
 			}
 			else
 			{
-				AsyncOperation request = SceneManager.LoadSceneAsync(scene.name);
+				AsyncOperation request = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scene.name);
 				if (scene.option.denySceneActivation)
 				{
-					request.set_allowSceneActivation(false);
+					request.allowSceneActivation = false;
 				}
 				yield return request;
 			}
@@ -221,11 +222,11 @@ namespace ZF.Core.Scene
 			scene.state = SceneState.Instantiating;
 			if (scene.option.additive)
 			{
-				SceneManager.LoadScene(scene.name, (LoadSceneMode)1);
+				UnityEngine.SceneManagement.SceneManager.LoadScene(scene.name, LoadSceneMode.Additive);
 			}
 			else
 			{
-				SceneManager.LoadScene(scene.name);
+				UnityEngine.SceneManagement.SceneManager.LoadScene(scene.name);
 			}
 			scene.state = SceneState.Instantiated;
 			logger.Info("scene {0} loaded", scene.name);

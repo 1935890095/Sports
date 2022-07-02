@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace ZF.Core.Render
 {
@@ -23,11 +24,11 @@ namespace ZF.Core.Render
 
 		private string tag_ = string.Empty;
 
-		private Vector3 scale_ = Vector3.get_one();
+		private Vector3 scale_ = Vector3.one;
 
-		private Vector3 position_ = Vector3.get_zero();
+		private Vector3 position_ = Vector3.zero;
 
-		private Quaternion rotation_ = Quaternion.get_identity();
+		private Quaternion rotation_ = Quaternion.identity;
 
 		private bool active_ = true;
 
@@ -60,9 +61,9 @@ namespace ZF.Core.Render
 			set
 			{
 				dontDestroyOnLoad_ = value;
-				if (value && Object.op_Implicit((Object)(object)gameObject) && (Object)(object)gameObject.get_transform().get_parent() == (Object)null)
+				if (value && gameObject && gameObject.transform.parent == null)
 				{
-					Object.DontDestroyOnLoad((Object)(object)gameObject);
+					Object.DontDestroyOnLoad(gameObject);
 				}
 			}
 		}
@@ -91,9 +92,9 @@ namespace ZF.Core.Render
 			set
 			{
 				name_ = value;
-				if (!string.IsNullOrEmpty(value) && Object.op_Implicit((Object)(object)gameObject))
+				if (!string.IsNullOrEmpty(value) && gameObject)
 				{
-					((Object)gameObject).set_name(value);
+					gameObject.name = value;
 				}
 			}
 		}
@@ -169,9 +170,9 @@ namespace ZF.Core.Render
 					value = string.Empty;
 				}
 				tag_ = value;
-				if ((Object)(object)gameObject != (Object)null)
+				if (gameObject != null)
 				{
-					gameObject.set_tag(tag_);
+					gameObject.tag = tag_;
 				}
 			}
 		}
@@ -188,9 +189,9 @@ namespace ZF.Core.Render
 				//IL_0032: Unknown result type (might be due to invalid IL or missing references)
 				//IL_0039: Unknown result type (might be due to invalid IL or missing references)
 				//IL_003a: Unknown result type (might be due to invalid IL or missing references)
-				if ((Object)(object)gameObject != (Object)null && (Object)(object)gameObject.get_transform() != (Object)null)
+				if (gameObject != null && gameObject.transform != null)
 				{
-					gameObject.get_transform().set_localScale(value);
+					gameObject.transform.localScale = value;
 				}
 				scale_ = value;
 				OnScale();
@@ -203,9 +204,9 @@ namespace ZF.Core.Render
 			{
 				//IL_0032: Unknown result type (might be due to invalid IL or missing references)
 				//IL_0039: Unknown result type (might be due to invalid IL or missing references)
-				if ((Object)(object)gameObject != (Object)null && (Object)(object)gameObject.get_transform() != (Object)null)
+				if (gameObject != null && gameObject.transform != null)
 				{
-					return gameObject.get_transform().get_position();
+					return gameObject.transform.position;
 				}
 				return position_;
 			}
@@ -214,9 +215,9 @@ namespace ZF.Core.Render
 				//IL_0032: Unknown result type (might be due to invalid IL or missing references)
 				//IL_0039: Unknown result type (might be due to invalid IL or missing references)
 				//IL_003a: Unknown result type (might be due to invalid IL or missing references)
-				if ((Object)(object)gameObject != (Object)null && (Object)(object)gameObject.get_transform() != (Object)null)
+				if (gameObject != null && gameObject.transform != null)
 				{
-					gameObject.get_transform().set_localPosition(value);
+					gameObject.transform.localPosition = value;
 				}
 				position_ = value;
 			}
@@ -228,11 +229,11 @@ namespace ZF.Core.Render
 			{
 				//IL_0032: Unknown result type (might be due to invalid IL or missing references)
 				//IL_003e: Unknown result type (might be due to invalid IL or missing references)
-				if ((Object)(object)gameObject != (Object)null && (Object)(object)gameObject.get_transform() != (Object)null)
+				if (gameObject != null && gameObject.transform != null)
 				{
-					return gameObject.get_transform().get_forward();
+					return gameObject.transform.forward;
 				}
-				return ((Quaternion)(ref rotation_)).get_eulerAngles();
+				return rotation_.eulerAngles;
 			}
 			set
 			{
@@ -250,9 +251,9 @@ namespace ZF.Core.Render
 			{
 				//IL_0032: Unknown result type (might be due to invalid IL or missing references)
 				//IL_0039: Unknown result type (might be due to invalid IL or missing references)
-				if ((Object)(object)gameObject != (Object)null && (Object)(object)gameObject.get_transform() != (Object)null)
+				if (gameObject != null && gameObject.transform != null)
 				{
-					return gameObject.get_transform().get_rotation();
+					return gameObject.transform.rotation;
 				}
 				return rotation_;
 			}
@@ -261,9 +262,9 @@ namespace ZF.Core.Render
 				//IL_0032: Unknown result type (might be due to invalid IL or missing references)
 				//IL_0039: Unknown result type (might be due to invalid IL or missing references)
 				//IL_003a: Unknown result type (might be due to invalid IL or missing references)
-				if ((Object)(object)gameObject != (Object)null && (Object)(object)gameObject.get_transform() != (Object)null)
+				if (gameObject != null && gameObject.transform != null)
 				{
-					gameObject.get_transform().set_localRotation(value);
+					gameObject.transform.localRotation = value;
 				}
 				rotation_ = value;
 			}
@@ -277,12 +278,12 @@ namespace ZF.Core.Render
 				//IL_0037: Unknown result type (might be due to invalid IL or missing references)
 				//IL_003a: Unknown result type (might be due to invalid IL or missing references)
 				//IL_0046: Unknown result type (might be due to invalid IL or missing references)
-				if ((Object)(object)gameObject != (Object)null && (Object)(object)gameObject.get_transform() != (Object)null)
+				if (gameObject != null && gameObject.transform != null)
 				{
-					Quaternion val = gameObject.get_transform().get_rotation();
-					return ((Quaternion)(ref val)).get_eulerAngles();
+					Quaternion val = gameObject.transform.rotation;
+					return val.eulerAngles;
 				}
-				return ((Quaternion)(ref rotation_)).get_eulerAngles();
+				return rotation_.eulerAngles;
 			}
 			set
 			{
@@ -291,9 +292,9 @@ namespace ZF.Core.Render
 				//IL_003e: Unknown result type (might be due to invalid IL or missing references)
 				//IL_003f: Unknown result type (might be due to invalid IL or missing references)
 				//IL_0044: Unknown result type (might be due to invalid IL or missing references)
-				if ((Object)(object)gameObject != (Object)null && (Object)(object)gameObject.get_transform() != (Object)null)
+				if (gameObject != null && gameObject.transform != null)
 				{
-					gameObject.get_transform().set_localRotation(Quaternion.Euler(value));
+					gameObject.transform.localRotation = Quaternion.Euler(value);
 				}
 				rotation_ = Quaternion.Euler(value);
 			}
@@ -440,9 +441,9 @@ namespace ZF.Core.Render
 				children = new List<IRenderObject>();
 			}
 			children.Add(child);
-			if ((Object)(object)gameObject != (Object)null && (Object)(object)child.gameObject != (Object)null)
+			if (gameObject != null && child.gameObject != null)
 			{
-				child.gameObject.get_transform().SetParent(gameObject.get_transform());
+				child.gameObject.transform.SetParent(gameObject.transform);
 			}
 		}
 
@@ -456,9 +457,9 @@ namespace ZF.Core.Render
 			if (num != -1)
 			{
 				children[num] = null;
-				if ((Object)(object)gameObject != (Object)null && (Object)(object)child.gameObject != (Object)null && (Object)(object)gameObject.get_transform() == (Object)(object)child.gameObject.get_transform().get_parent())
+				if (gameObject != null && child.gameObject != null && gameObject.transform == child.gameObject.transform.parent)
 				{
-					child.gameObject.get_transform().SetParent((Transform)null);
+					child.gameObject.transform.SetParent((Transform)null);
 				}
 			}
 		}
@@ -480,7 +481,7 @@ namespace ZF.Core.Render
 				}
 			}
 			OnCreate(resource);
-			if (RenderFactory.Settings.ReplaceShaderInEditorMode && Application.get_isEditor())
+			if (RenderFactory.Settings.ReplaceShaderInEditorMode && Application.isEditor)
 			{
 				ReplaceShader();
 			}
@@ -491,19 +492,19 @@ namespace ZF.Core.Render
 				onComplete_(this);
 				onComplete_ = null;
 			}
-			if (Object.op_Implicit((Object)(object)gameObject))
+			if (gameObject)
 			{
 				if (dontDestroyOnLoad)
 				{
-					Object.DontDestroyOnLoad((Object)(object)gameObject);
+					Object.DontDestroyOnLoad(gameObject);
 				}
 				if (!string.IsNullOrEmpty(name_))
 				{
-					((Object)gameObject).set_name(name_);
+					gameObject.name = name_;
 				}
 				if (!string.IsNullOrEmpty(tag_))
 				{
-					gameObject.set_tag(tag_);
+					gameObject.tag = tag_;
 				}
 			}
 			_ApplyParent();
@@ -524,7 +525,7 @@ namespace ZF.Core.Render
 					}
 					catch (Exception ex)
 					{
-						Debug.LogError((object)ex.ToString());
+						Debug.LogError(ex.ToString());
 					}
 				}
 				num++;
@@ -553,7 +554,7 @@ namespace ZF.Core.Render
 						}
 						catch (Exception ex)
 						{
-							Debug.LogError((object)ex.ToString());
+							Debug.LogError(ex.ToString());
 						}
 					}
 				}
@@ -572,7 +573,7 @@ namespace ZF.Core.Render
 					}
 					catch (Exception ex2)
 					{
-						Debug.LogError((object)ex2.ToString());
+						Debug.LogError(ex2.ToString());
 					}
 				}
 				num2++;
@@ -584,7 +585,7 @@ namespace ZF.Core.Render
 			}
 			catch (Exception ex3)
 			{
-				Debug.LogError((object)ex3.ToString());
+				Debug.LogError(ex3.ToString());
 			}
 			if (resource != null)
 			{
@@ -614,7 +615,7 @@ namespace ZF.Core.Render
 				}
 				catch (Exception ex)
 				{
-					Debug.LogError((object)ex.ToString());
+					Debug.LogError(ex.ToString());
 				}
 			}
 			if (complete)
@@ -646,7 +647,7 @@ namespace ZF.Core.Render
 						}
 						catch (Exception ex2)
 						{
-							Debug.LogError((object)ex2.ToString());
+							Debug.LogError(ex2.ToString());
 						}
 						if (components != null && num != -1)
 						{
@@ -683,7 +684,7 @@ namespace ZF.Core.Render
 					}
 					catch (Exception ex3)
 					{
-						Debug.LogError((object)ex3.ToString());
+						Debug.LogError(ex3.ToString());
 					}
 					if (children != null && num3 != -1)
 					{
@@ -721,7 +722,7 @@ namespace ZF.Core.Render
 					}
 					catch (Exception ex)
 					{
-						Debug.LogError((object)ex.ToString());
+						Debug.LogError(ex.ToString());
 					}
 				}
 				num++;
@@ -739,7 +740,7 @@ namespace ZF.Core.Render
 					}
 					catch (Exception ex2)
 					{
-						Debug.LogError((object)ex2.ToString());
+						Debug.LogError(ex2.ToString());
 					}
 				}
 				num2++;
@@ -780,7 +781,7 @@ namespace ZF.Core.Render
 					}
 					catch (Exception ex)
 					{
-						Debug.LogError((object)ex.ToString());
+						Debug.LogError(ex.ToString());
 					}
 				}
 				num++;
@@ -797,7 +798,7 @@ namespace ZF.Core.Render
 					}
 					catch (Exception ex2)
 					{
-						Debug.LogError((object)ex2.ToString());
+						Debug.LogError(ex2.ToString());
 					}
 				}
 				num2++;
@@ -806,9 +807,9 @@ namespace ZF.Core.Render
 
 		public void ApplyParticleScale(float fscale)
 		{
-			if (!((Object)(object)gameObject == (Object)null))
+			if (!(gameObject == null))
 			{
-				ApplyParticleScale(gameObject.get_transform(), fscale);
+				ApplyParticleScale(gameObject.transform, fscale);
 			}
 		}
 
@@ -845,49 +846,49 @@ namespace ZF.Core.Render
 			//IL_0109: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0119: Unknown result type (might be due to invalid IL or missing references)
 			fscale = Mathf.Abs(fscale);
-			if (!Object.op_Implicit((Object)(object)go) || Mathf.Approximately(fscale, 1f))
+			if (!(Object)(go) || Mathf.Approximately(fscale, 1f))
 			{
 				return;
 			}
 			ParticleSystem[] componentsInChildren = ((Component)go).GetComponentsInChildren<ParticleSystem>();
 			foreach (ParticleSystem val in componentsInChildren)
 			{
-				MainModule main = val.get_main();
-				MainModule main2 = val.get_main();
-				MinMaxCurve startSizeX = ((MainModule)(ref main2)).get_startSizeX();
-				((MainModule)(ref main)).set_startSizeX(new MinMaxCurve(((MinMaxCurve)(ref startSizeX)).get_constant() * fscale));
-				MainModule main3 = val.get_main();
-				if (((MainModule)(ref main3)).get_startSize3D())
+				ParticleSystem.MainModule main = val.main;
+				ParticleSystem.MainModule main2 = val.main;
+				ParticleSystem.MinMaxCurve startSizeX = ((ParticleSystem.MainModule)main2).startSizeX;
+				main.startSizeX = new ParticleSystem.MinMaxCurve(startSizeX.constant * fscale);
+				ParticleSystem.MainModule main3 = val.main;
+				if (((ParticleSystem.MainModule)main3).startSize3D)
 				{
-					MainModule main4 = val.get_main();
-					MinMaxCurve startSizeY = ((MainModule)(ref main4)).get_startSizeY();
-					((MainModule)(ref main)).set_startSizeY(new MinMaxCurve(((MinMaxCurve)(ref startSizeY)).get_constant() * fscale));
-					MainModule main5 = val.get_main();
-					MinMaxCurve startSizeZ = ((MainModule)(ref main5)).get_startSizeZ();
-					((MainModule)(ref main)).set_startSizeZ(new MinMaxCurve(((MinMaxCurve)(ref startSizeZ)).get_constant() * fscale));
+					ParticleSystem.MainModule main4 = val.main;
+					ParticleSystem.MinMaxCurve startSizeY = ((ParticleSystem.MainModule)main4).startSizeY;
+					main.startSizeY = (new ParticleSystem.MinMaxCurve(((ParticleSystem.MinMaxCurve)startSizeY).constant * fscale));
+					ParticleSystem.MainModule main5 = val.main;
+					ParticleSystem.MinMaxCurve startSizeZ = ((ParticleSystem.MainModule)main5).startSizeZ;
+					main.startSizeZ = (new ParticleSystem.MinMaxCurve(((ParticleSystem.MinMaxCurve)startSizeZ).constant * fscale));
 				}
-				ShapeModule shape = val.get_shape();
-				if (((ShapeModule)(ref shape)).get_enabled())
+				ParticleSystem.ShapeModule shape = val.shape;
+				if (((ParticleSystem.ShapeModule)shape).enabled)
 				{
-					ShapeModule shape2 = val.get_shape();
-					ShapeModule shape3 = val.get_shape();
-					((ShapeModule)(ref shape2)).set_radius(((ShapeModule)(ref shape3)).get_radius() * fscale);
-					ShapeModule shape4 = val.get_shape();
-					((ShapeModule)(ref shape2)).set_scale(((ShapeModule)(ref shape4)).get_scale() * fscale);
+					ParticleSystem.ShapeModule shape2 = val.shape;
+					ParticleSystem.ShapeModule shape3 = val.shape;
+					shape2.radius = (((ParticleSystem.ShapeModule)shape3).radius * fscale);
+					ParticleSystem.ShapeModule shape4 = val.shape;
+					shape2.scale = (((ParticleSystem.ShapeModule)shape4).scale * fscale);
 				}
-				((Component)val).get_transform().set_localScale(Vector3.get_one());
+				((Component)val).transform.localScale = Vector3.one;
 			}
 		}
 
 		protected static void DestroyObject(GameObject go)
 		{
-			if (Application.get_isEditor())
+			if (Application.isEditor)
 			{
-				Object.DestroyImmediate((Object)(object)go, true);
+				Object.DestroyImmediate(go, true);
 			}
 			else
 			{
-				Object.Destroy((Object)(object)go);
+				Object.Destroy(go);
 			}
 		}
 
@@ -929,19 +930,19 @@ namespace ZF.Core.Render
 			//IL_001d: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0033: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0049: Unknown result type (might be due to invalid IL or missing references)
-			if ((Object)(object)gameObject != (Object)null)
+			if (gameObject != null)
 			{
-				gameObject.get_transform().set_localScale(scale_);
-				gameObject.get_transform().set_localPosition(position_);
-				gameObject.get_transform().set_localRotation(rotation_);
+				gameObject.transform.localScale = scale_;
+				gameObject.transform.localPosition = position_;
+				gameObject.transform.localRotation = rotation_;
 			}
 			int num = 0;
 			while (children != null && num < children.Count)
 			{
 				IRenderObject renderObject = children[num];
-				if (renderObject != null && (Object)(object)gameObject != (Object)null && (Object)(object)renderObject.gameObject != (Object)null && (Object)(object)gameObject.get_transform() == (Object)(object)renderObject.gameObject.get_transform().get_parent())
+				if (renderObject != null && gameObject != null && renderObject.gameObject != null && gameObject.transform == renderObject.gameObject.transform.parent)
 				{
-					renderObject.gameObject.get_transform().SetParent(gameObject.get_transform());
+					renderObject.gameObject.transform.SetParent(gameObject.transform);
 					if (renderObject is RenderObject)
 					{
 						RenderObject renderObject2 = renderObject as RenderObject;
@@ -954,7 +955,7 @@ namespace ZF.Core.Render
 
 		private void _ApplyActive()
 		{
-			if ((Object)(object)gameObject != (Object)null)
+			if (gameObject != null)
 			{
 				gameObject.SetActive(active_);
 			}
@@ -970,7 +971,7 @@ namespace ZF.Core.Render
 					}
 					catch (Exception ex)
 					{
-						Debug.LogError((object)ex.ToString());
+						Debug.LogError(ex.ToString());
 					}
 				}
 				num++;
@@ -979,20 +980,20 @@ namespace ZF.Core.Render
 
 		private void _ApplyParent()
 		{
-			if ((Object)(object)gameObject == (Object)null)
+			if (gameObject == null)
 			{
 				return;
 			}
-			if (parent_ == null || (Object)(object)parent_.gameObject == (Object)null)
+			if (parent_ == null || parent_.gameObject == null)
 			{
 				if (dontDestroyOnLoad)
 				{
-					Object.DontDestroyOnLoad((Object)(object)gameObject);
+					Object.DontDestroyOnLoad(gameObject);
 				}
 			}
 			else
 			{
-				gameObject.get_transform().SetParent(parent_.gameObject.get_transform());
+				gameObject.transform.SetParent(parent_.gameObject.transform);
 			}
 		}
 
@@ -1016,7 +1017,7 @@ namespace ZF.Core.Render
 				}
 				num++;
 			}
-			if (renderers == null && Object.op_Implicit((Object)(object)gameObject))
+			if (renderers == null && gameObject)
 			{
 				renderers = gameObject.GetComponentsInChildren<Renderer>(true);
 			}
@@ -1025,15 +1026,15 @@ namespace ZF.Core.Render
 				for (int i = 0; i < renderers.Length; i++)
 				{
 					Renderer val = renderers[i];
-					if ((Object)(object)val != (Object)null)
+					if (val != null)
 					{
-						((Component)val).get_gameObject().set_layer(layer_);
+						((Component)val).gameObject.layer = layer_;
 					}
 				}
 			}
-			if (Object.op_Implicit((Object)(object)gameObject))
+			if (gameObject)
 			{
-				gameObject.set_layer(layer_);
+				gameObject.layer = layer_;
 			}
 		}
 
@@ -1043,7 +1044,7 @@ namespace ZF.Core.Render
 			{
 				return;
 			}
-			if (renderers == null && Object.op_Implicit((Object)(object)gameObject))
+			if (renderers == null && gameObject)
 			{
 				renderers = gameObject.GetComponentsInChildren<Renderer>(true);
 			}
@@ -1054,9 +1055,9 @@ namespace ZF.Core.Render
 			for (int i = 0; i < renderers.Length; i++)
 			{
 				Renderer val = renderers[i];
-				if ((Object)(object)val != (Object)null)
+				if (val != null)
 				{
-					val.set_sortingOrder(order_);
+					val.sortingOrder = order_;
 				}
 			}
 		}
@@ -1067,7 +1068,7 @@ namespace ZF.Core.Render
 			{
 				return;
 			}
-			if (renderers == null && Object.op_Implicit((Object)(object)gameObject))
+			if (renderers == null && gameObject)
 			{
 				renderers = gameObject.GetComponentsInChildren<Renderer>(true);
 			}
@@ -1078,16 +1079,16 @@ namespace ZF.Core.Render
 			for (int i = 0; i < renderers.Length; i++)
 			{
 				Renderer val = renderers[i];
-				if ((Object)(object)val != (Object)null)
+				if (val != null)
 				{
-					val.set_sortingLayerID(sortingLayer_);
+					val.sortingLayerID = sortingLayer_;
 				}
 			}
 		}
 
 		private void _ApplyVisible()
 		{
-			if (renderers == null && Object.op_Implicit((Object)(object)gameObject))
+			if (renderers == null && gameObject)
 			{
 				renderers = gameObject.GetComponentsInChildren<Renderer>(true);
 			}
@@ -1095,9 +1096,9 @@ namespace ZF.Core.Render
 			{
 				for (int i = 0; i < renderers.Length; i++)
 				{
-					if (renderers[i].get_enabled() != visible_)
+					if (renderers[i].enabled != visible_)
 					{
-						renderers[i].set_enabled(visible_);
+						renderers[i].enabled = visible_;
 					}
 				}
 			}
@@ -1106,7 +1107,7 @@ namespace ZF.Core.Render
 
 		private void ReplaceShader()
 		{
-			if (renderers == null && Object.op_Implicit((Object)(object)gameObject))
+			if (renderers == null && gameObject)
 			{
 				renderers = gameObject.GetComponentsInChildren<Renderer>(true);
 			}
@@ -1117,15 +1118,15 @@ namespace ZF.Core.Render
 			Renderer[] array = renderers;
 			foreach (Renderer val in array)
 			{
-				Material[] sharedMaterials = val.get_sharedMaterials();
+				Material[] sharedMaterials = val.sharedMaterials;
 				foreach (Material val2 in sharedMaterials)
 				{
-					if (Object.op_Implicit((Object)(object)val2) && Object.op_Implicit((Object)(object)val2.get_shader()))
+					if (val2 && val2.shader)
 					{
-						Shader val3 = Shader.Find(((Object)val2.get_shader()).get_name());
-						if (Object.op_Implicit((Object)(object)val3))
+						Shader val3 = Shader.Find(val2.shader.name);
+						if (val3)
 						{
-							val2.set_shader(val3);
+							val2.shader = val3;
 						}
 					}
 				}

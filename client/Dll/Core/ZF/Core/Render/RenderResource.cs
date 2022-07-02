@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ZF.Core.Util;
+using Object =UnityEngine.Object;
 
 namespace ZF.Core.Render
 {
@@ -60,19 +61,19 @@ namespace ZF.Core.Render
 		{
 			loading = true;
 			AssetBundleCreateRequest createrequest = AssetBundle.LoadFromFileAsync(PathExt.MakeLoadPath(name));
-			((AsyncOperation)createrequest).set_priority(priority);
-			while (!((AsyncOperation)createrequest).get_isDone())
+			((AsyncOperation)createrequest).priority = priority;
+			while (!((AsyncOperation)createrequest).isDone)
 			{
 				yield return null;
 			}
-			asset_bundle = createrequest.get_assetBundle();
+			asset_bundle = createrequest.assetBundle;
 			if ((Object)(object)asset_bundle == (Object)null)
 			{
 				Debug.LogError((object)("[RenderResource] error: " + name));
 				loading = false;
 				yield break;
 			}
-			if (!asset_bundle.get_isStreamedSceneAssetBundle())
+			if (!asset_bundle.isStreamedSceneAssetBundle)
 			{
 				if (priority > 0)
 				{
@@ -81,11 +82,11 @@ namespace ZF.Core.Render
 				else
 				{
 					AssetBundleRequest request = asset_bundle.LoadAllAssetsAsync();
-					while (!((AsyncOperation)request).get_isDone())
+					while (!((AsyncOperation)request).isDone)
 					{
 						yield return null;
 					}
-					assets = request.get_allAssets();
+					assets = request.allAssets;
 				}
 			}
 			if (assets == null || assets.Length == 0)

@@ -49,17 +49,17 @@ namespace ZF.Asset
 					{
 						Object obj2 = assets[i];
 						Material val2 = (Material)(object)((obj2 is Material) ? obj2 : null);
-						if (Object.op_Implicit((Object)(object)val2))
+						if (val2)
 						{
-							val2.set_mainTexture(val);
+							val2.mainTexture = (val);
 						}
 						Object obj3 = assets[i];
 						RawImage val3 = (RawImage)(object)((obj3 is RawImage) ? obj3 : null);
-						if (Object.op_Implicit((Object)(object)val3))
+						if (val3)
 						{
-							((Behaviour)val3).set_enabled(false);
-							val3.set_texture(val);
-							((Behaviour)val3).set_enabled(true);
+							((Behaviour)val3).enabled = (false);
+							val3.texture = (val);
+							((Behaviour)val3).enabled = (true);
 						}
 					}
 				}
@@ -70,9 +70,9 @@ namespace ZF.Asset
 					foreach (Object obj5 in assets)
 					{
 						Material val4 = (Material)(object)((obj5 is Material) ? obj5 : null);
-						if (Object.op_Implicit((Object)(object)val4))
+						if (val4)
 						{
-							val4.set_shader(shader);
+							val4.shader = (shader);
 						}
 					}
 				}
@@ -85,9 +85,9 @@ namespace ZF.Asset
 				foreach (Object obj7 in assets)
 				{
 					Text val5 = (Text)(object)((obj7 is Text) ? obj7 : null);
-					if (Object.op_Implicit((Object)(object)val5))
+					if (val5 != null)
 					{
-						val5.set_font(font);
+						val5.font = font;
 					}
 				}
 			}

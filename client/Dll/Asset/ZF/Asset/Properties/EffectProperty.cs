@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using ZF.Asset.Attributes;
+using Object = UnityEngine.Object;
 
 namespace ZF.Asset.Properties
 {
@@ -26,12 +27,12 @@ namespace ZF.Asset.Properties
 			{
 				return validator.Validate(this);
 			}
-			float num = CalcDuration(((Component)this).get_gameObject());
+			float num = CalcDuration(((Component)this).gameObject);
 			if (num != duration)
 			{
 				duration = num;
 			}
-			renderers = ((Component)this).get_gameObject().GetComponentsInChildren<Renderer>(true);
+			renderers = ((Component)this).gameObject.GetComponentsInChildren<Renderer>(true);
 			Collect();
 			return true;
 		}
@@ -65,20 +66,20 @@ namespace ZF.Asset.Properties
 				ParticleSystem[] array = componentsInChildren;
 				foreach (ParticleSystem val in array)
 				{
-					EmissionModule emission = val.get_emission();
-					if (!((EmissionModule)(ref emission)).get_enabled())
+					EmissionModule emission = val.emission;
+					if (!((EmissionModule)emission).enabled)
 					{
 						continue;
 					}
-					MainModule main = val.get_main();
-					if (!((MainModule)(ref main)).get_loop())
+					ParticleSystem.MainModule main = val.main;
+					if (!((ParticleSystem.MainModule)main).loop)
 					{
-						MainModule main2 = val.get_main();
-						float maxValue = GetMaxValue(((MainModule)(ref main2)).get_startDelay());
-						MainModule main3 = val.get_main();
-						float num2 = ((MainModule)(ref main3)).get_duration();
-						MainModule main4 = val.get_main();
-						float num3 = maxValue + Mathf.Max(num2, GetMaxValue(((MainModule)(ref main4)).get_startLifetime()));
+						ParticleSystem.MainModule main2 = val.main;
+						float maxValue = GetMaxValue(((ParticleSystem.MainModule)main2).startDelay);
+						ParticleSystem.MainModule main3 = val.main;
+						float num2 = ((ParticleSystem.MainModule)main3).duration;
+						ParticleSystem.MainModule main4 = val.main;
+						float num3 = maxValue + Mathf.Max(num2, GetMaxValue(((ParticleSystem.MainModule)main4).startLifetime));
 						if (num3 > num)
 						{
 							num = num3;
@@ -92,7 +93,7 @@ namespace ZF.Asset.Properties
 			{
 				foreach (Animation val2 in componentsInChildren2)
 				{
-					if ((Object)(object)val2 == (Object)null)
+					if (val2 == (Object)null)
 					{
 						continue;
 					}
@@ -103,12 +104,12 @@ namespace ZF.Asset.Properties
 						while (enumerator.MoveNext())
 						{
 							AnimationState val3 = (AnimationState)enumerator.Current;
-							if ((int)val3.get_wrapMode() == 2)
+							if ((int)val3.wrapMode == 2)
 							{
 								num = 0f;
 								return num;
 							}
-							num4 += val3.get_length();
+							num4 += val3.length;
 						}
 					}
 					finally
@@ -129,11 +130,11 @@ namespace ZF.Asset.Properties
 			{
 				foreach (Animator val4 in componentsInChildren3)
 				{
-					if ((Object)(object)val4 == (Object)null || (Object)(object)val4.get_runtimeAnimatorController() == (Object)null)
+					if (val4 == (Object)null || val4.runtimeAnimatorController == (Object)null)
 					{
 						continue;
 					}
-					AnimationClip[] animationClips = val4.get_runtimeAnimatorController().get_animationClips();
+					AnimationClip[] animationClips = val4.runtimeAnimatorController.animationClips;
 					float num5 = 0f;
 					if (animationClips != null)
 					{
@@ -142,8 +143,8 @@ namespace ZF.Asset.Properties
 						while (num6 < array2.Length)
 						{
 							AnimationClip val5 = array2[num6];
-							num5 += val5.get_length();
-							if ((int)val5.get_wrapMode() != 2)
+							num5 += val5.length;
+							if ((int)val5.wrapMode != 2)
 							{
 								num6++;
 								continue;
@@ -169,25 +170,25 @@ namespace ZF.Asset.Properties
 			goto IL_0232;
 		}
 
-		private static float GetMaxValue(MinMaxCurve minMaxCurve)
+		private static float GetMaxValue(ParticleSystem.MinMaxCurve minMaxCurve)
 		{
 			//IL_0002: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0007: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0008: Unknown result type (might be due to invalid IL or missing references)
 			//IL_001e: Expected I4, but got Unknown
-			ParticleSystemCurveMode mode = ((MinMaxCurve)(ref minMaxCurve)).get_mode();
+			ParticleSystemCurveMode mode = ((ParticleSystem.MinMaxCurve)minMaxCurve).mode;
 			switch ((int)mode)
 			{
 			case 0:
-				return ((MinMaxCurve)(ref minMaxCurve)).get_constant();
+				return ((ParticleSystem.MinMaxCurve)minMaxCurve).constant;
 			case 3:
-				return ((MinMaxCurve)(ref minMaxCurve)).get_constantMax();
+				return ((ParticleSystem.MinMaxCurve)minMaxCurve).constantMax;
 			case 1:
-				return GetMaxValue(((MinMaxCurve)(ref minMaxCurve)).get_curve());
+				return GetMaxValue(((ParticleSystem.MinMaxCurve)minMaxCurve).curve);
 			case 2:
 			{
-				float maxValue = GetMaxValue(((MinMaxCurve)(ref minMaxCurve)).get_curveMin());
-				float maxValue2 = GetMaxValue(((MinMaxCurve)(ref minMaxCurve)).get_curveMax());
+				float maxValue = GetMaxValue(((ParticleSystem.MinMaxCurve)minMaxCurve).curveMin);
+				float maxValue2 = GetMaxValue(((ParticleSystem.MinMaxCurve)minMaxCurve).curveMax);
 				return (!(maxValue > maxValue2)) ? maxValue2 : maxValue;
 			}
 			default:
@@ -202,13 +203,13 @@ namespace ZF.Asset.Properties
 			//IL_0024: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0029: Unknown result type (might be due to invalid IL or missing references)
 			float num = 0f;
-			for (int i = 0; i < curve.get_length(); i++)
+			for (int i = 0; i < curve.length; i++)
 			{
-				Keyframe val = curve.get_Item(i);
-				if (((Keyframe)(ref val)).get_time() > num)
+				Keyframe val = curve.keys[i];
+				if (((Keyframe)val).time > num)
 				{
-					Keyframe val2 = curve.get_Item(i);
-					num = ((Keyframe)(ref val2)).get_time();
+					Keyframe val2 = curve.keys[i];
+					num = ((Keyframe)val2).time;
 				}
 			}
 			return num;

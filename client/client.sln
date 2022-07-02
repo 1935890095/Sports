@@ -13,10 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IngameDebugConsole.Editor", "IngameDebugConsole.Editor.csproj", "{ff7c5f3a-817c-b3d6-fdc6-b93ff30bb2f7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dll", "Dll", "{5E24E519-9CAF-4B8A-A972-66DDC4A4DE85}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Dll\Core\Core.csproj", "{5C2F0E21-5B13-4F44-A872-0294303338E4}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,13 +30,8 @@ Global
 		{ce9fc52f-b1bc-d313-fb79-5dd1af79a2af}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ff7c5f3a-817c-b3d6-fdc6-b93ff30bb2f7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ff7c5f3a-817c-b3d6-fdc6-b93ff30bb2f7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5C2F0E21-5B13-4F44-A872-0294303338E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5C2F0E21-5B13-4F44-A872-0294303338E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{5C2F0E21-5B13-4F44-A872-0294303338E4} = {5E24E519-9CAF-4B8A-A972-66DDC4A4DE85}
 	EndGlobalSection
 EndGlobal

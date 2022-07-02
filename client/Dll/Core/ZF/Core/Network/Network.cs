@@ -7,6 +7,7 @@ using System.Threading;
 using UnityEngine;
 using ZF.Core.Logging;
 using ZF.Core.Util;
+using ILogger = ZF.Core.Logging.ILogger;
 
 namespace ZF.Core.Network
 {
@@ -643,7 +644,7 @@ namespace ZF.Core.Network
 			this.ip = ip;
 			this.port = port;
 			connect_count++;
-			connect_time = Time.get_realtimeSinceStartup();
+			connect_time = Time.realtimeSinceStartup;
 			state = 0;
 			net = new Net(connect_count, this, recv_buffer_size, send_buffer_size);
 			return net.Connect(ip, port);
@@ -731,7 +732,7 @@ namespace ZF.Core.Network
 			}
 			ClearPing();
 			connect_count++;
-			connect_time = Time.get_realtimeSinceStartup();
+			connect_time = Time.realtimeSinceStartup;
 			net = new Net(connect_count, this, recv_buffer_size, send_buffer_size);
 			return net.Connect(ip, port);
 		}
@@ -790,9 +791,9 @@ namespace ZF.Core.Network
 		private void ProcessWait()
 		{
 			//IL_0000: Unknown result type (might be due to invalid IL or missing references)
-			if ((int)Application.get_internetReachability() == 0)
+			if ((int)Application.internetReachability == 0)
 			{
-				float realtimeSinceStartup = Time.get_realtimeSinceStartup();
+				float realtimeSinceStartup = Time.realtimeSinceStartup;
 				if (realtimeSinceStartup - state_time >= 180f)
 				{
 					if (!IsConnecting())
@@ -813,7 +814,7 @@ namespace ZF.Core.Network
 
 		private void ProcessRecon()
 		{
-			float realtimeSinceStartup = Time.get_realtimeSinceStartup();
+			float realtimeSinceStartup = Time.realtimeSinceStartup;
 			if (realtimeSinceStartup - state_time >= 30f)
 			{
 				if (!IsConnecting())
@@ -830,7 +831,7 @@ namespace ZF.Core.Network
 		private void ChangeState(int state)
 		{
 			this.state = state;
-			state_time = Time.get_realtimeSinceStartup();
+			state_time = Time.realtimeSinceStartup;
 			int num = this.state;
 			if ((num == 2 || num == 1) && lag_time != 999999)
 			{
@@ -850,7 +851,7 @@ namespace ZF.Core.Network
 		{
 			if (ulimit_ms == 0f)
 			{
-				ulimit_ms = 800f / (float)Application.get_targetFrameRate();
+				ulimit_ms = 800f / (float)Application.targetFrameRate;
 			}
 			stopwatch.Start();
 			int num = 0;
@@ -937,7 +938,7 @@ namespace ZF.Core.Network
 				}
 			}
 			ChangeState(0);
-			ping_time = Time.get_realtimeSinceStartup();
+			ping_time = Time.realtimeSinceStartup;
 			if (NetworkConnected != null)
 			{
 				NetworkConnected();
@@ -993,7 +994,7 @@ namespace ZF.Core.Network
 			case NetState.DISCONNECT_DISC:
 				if (auto_connect)
 				{
-					if ((int)Application.get_internetReachability() == 0)
+					if ((int)Application.internetReachability == 0)
 					{
 						ChangeState(2);
 					}
@@ -1036,7 +1037,7 @@ namespace ZF.Core.Network
 		{
 			if (net != null && net.IsConnecting() && connect_time > 0f)
 			{
-				float realtimeSinceStartup = Time.get_realtimeSinceStartup();
+				float realtimeSinceStartup = Time.realtimeSinceStartup;
 				if (realtimeSinceStartup - connect_time >= connect_timeout)
 				{
 					OnConnectFail(NetState.CONNECT_TIMEOUT);
@@ -1050,7 +1051,7 @@ namespace ZF.Core.Network
 			{
 				return;
 			}
-			float realtimeSinceStartup = Time.get_realtimeSinceStartup();
+			float realtimeSinceStartup = Time.realtimeSinceStartup;
 			int num = (int)(realtimeSinceStartup * 1000f);
 			int num2 = int.MaxValue;
 			while (pong_queue.Count > 0)

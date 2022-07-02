@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using SceneManager = UnityEngine.SceneManagement.SceneManager;
+using Scene = UnityEngine.SceneManagement.Scene;
 using ZF.Asset.Attributes;
 
 namespace ZF.Asset.Properties
@@ -22,7 +24,7 @@ namespace ZF.Asset.Properties
 				return validator.Validate(this);
 			}
 			Scene activeScene = SceneManager.GetActiveScene();
-			GameObject[] rootGameObjects = ((Scene)(ref activeScene)).GetRootGameObjects();
+			GameObject[] rootGameObjects = ((Scene)activeScene).GetRootGameObjects();
 			List<Renderer> renderers = new List<Renderer>();
 			Array.ForEach(rootGameObjects, delegate(GameObject root)
 			{

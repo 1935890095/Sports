@@ -12,7 +12,7 @@ namespace ZF.Asset.Properties
 			{
 				return validator.Validate(this);
 			}
-			if (!Object.op_Implicit(asset))
+			if (!(asset))
 			{
 				return false;
 			}

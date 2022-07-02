@@ -9,7 +9,6 @@ namespace ZF.Asset.Properties
 		public string[] shaders = Array.Empty<string>();
 
 		public PreloadProperty()
-			: this()
 		{
 		}
 

@@ -79,42 +79,42 @@ namespace ZF.UI.Editor
 			//IL_01c2: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01e5: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0225: Unknown result type (might be due to invalid IL or missing references)
-			if (EditorTools.DrawHeader($"{index}.{((Object)group).get_name()}[g]"))
+			if (EditorTools.DrawHeader($"{index}.{(group).name}[g]"))
 			{
 				EditorTools.BeginContents();
-				EditorGUILayout.BeginHorizontal((GUILayoutOption[])(object)new GUILayoutOption[0]);
-				EditorGUILayout.LabelField("GameObject", (GUILayoutOption[])(object)new GUILayoutOption[1] { GUILayout.Width(EditorGUIUtility.get_labelWidth()) });
-				EditorGUILayout.ObjectField((Object)(object)((Component)group).get_gameObject(), typeof(GameObject), true, (GUILayoutOption[])(object)new GUILayoutOption[0]);
+				EditorGUILayout.BeginHorizontal((GUILayoutOption[])new GUILayoutOption[0]);
+				EditorGUILayout.LabelField("GameObject", (GUILayoutOption[])new GUILayoutOption[1] { GUILayout.Width(EditorGUIUtility.labelWidth) });
+				EditorGUILayout.ObjectField(((Component)group).gameObject, typeof(GameObject), true, (GUILayoutOption[])new GUILayoutOption[0]);
 				EditorGUILayout.EndHorizontal();
-				EditorGUILayout.BeginHorizontal((GUILayoutOption[])(object)new GUILayoutOption[0]);
-				EditorGUILayout.LabelField("Name：", (GUILayoutOption[])(object)new GUILayoutOption[1] { GUILayout.Width(EditorGUIUtility.get_labelWidth()) });
-				GUI.set_color(Color.get_green());
-				EditorGUILayout.LabelField(group.Name, (GUILayoutOption[])(object)new GUILayoutOption[0]);
-				GUI.set_color(Color.get_white());
+				EditorGUILayout.BeginHorizontal((GUILayoutOption[])new GUILayoutOption[0]);
+				EditorGUILayout.LabelField("Name：", (GUILayoutOption[])new GUILayoutOption[1] { GUILayout.Width(EditorGUIUtility.labelWidth) });
+				GUI.color = (Color.green);
+				EditorGUILayout.LabelField(group.Name, (GUILayoutOption[])new GUILayoutOption[0]);
+				GUI.color = (Color.white);
 				EditorGUILayout.EndHorizontal();
-				EditorGUILayout.BeginHorizontal((GUILayoutOption[])(object)new GUILayoutOption[0]);
-				EditorGUILayout.LabelField("Type：", (GUILayoutOption[])(object)new GUILayoutOption[1] { GUILayout.Width(EditorGUIUtility.get_labelWidth()) });
-				GUI.set_color(Color.get_green());
-				EditorGUILayout.LabelField(group.type, (GUILayoutOption[])(object)new GUILayoutOption[0]);
-				GUI.set_color(Color.get_white());
+				EditorGUILayout.BeginHorizontal((GUILayoutOption[])new GUILayoutOption[0]);
+				EditorGUILayout.LabelField("Type：", (GUILayoutOption[])new GUILayoutOption[1] { GUILayout.Width(EditorGUIUtility.labelWidth) });
+				GUI.color = (Color.green);
+				EditorGUILayout.LabelField(group.type, (GUILayoutOption[])new GUILayoutOption[0]);
+				GUI.color = (Color.white);
 				EditorGUILayout.EndHorizontal();
-				EditorGUILayout.BeginHorizontal((GUILayoutOption[])(object)new GUILayoutOption[0]);
-				EditorGUILayout.LabelField("Desc：", (GUILayoutOption[])(object)new GUILayoutOption[1] { GUILayout.Width(EditorGUIUtility.get_labelWidth()) });
-				GUI.set_color(Color.get_green());
-				EditorGUILayout.LabelField(group.desc, (GUILayoutOption[])(object)new GUILayoutOption[0]);
-				GUI.set_color(Color.get_white());
+				EditorGUILayout.BeginHorizontal((GUILayoutOption[])new GUILayoutOption[0]);
+				EditorGUILayout.LabelField("Desc：", (GUILayoutOption[])new GUILayoutOption[1] { GUILayout.Width(EditorGUIUtility.labelWidth) });
+				GUI.color = (Color.green);
+				EditorGUILayout.LabelField(group.desc, (GUILayoutOption[])new GUILayoutOption[0]);
+				GUI.color = (Color.white);
 				EditorGUILayout.EndHorizontal();
-				EditorGUILayout.BeginHorizontal((GUILayoutOption[])(object)new GUILayoutOption[0]);
-				EditorGUILayout.LabelField("Path：", (GUILayoutOption[])(object)new GUILayoutOption[1] { GUILayout.Width(EditorGUIUtility.get_labelWidth()) });
-				GUI.set_color(Color.get_green());
-				EditorGUILayout.LabelField(group.path, (GUILayoutOption[])(object)new GUILayoutOption[0]);
-				GUI.set_color(Color.get_white());
+				EditorGUILayout.BeginHorizontal((GUILayoutOption[])new GUILayoutOption[0]);
+				EditorGUILayout.LabelField("Path：", (GUILayoutOption[])new GUILayoutOption[1] { GUILayout.Width(EditorGUIUtility.labelWidth) });
+				GUI.color = (Color.green);
+				EditorGUILayout.LabelField(group.path, (GUILayoutOption[])new GUILayoutOption[0]);
+				GUI.color = (Color.white);
 				EditorGUILayout.EndHorizontal();
-				EditorGUILayout.BeginHorizontal((GUILayoutOption[])(object)new GUILayoutOption[0]);
-				EditorGUILayout.LabelField("Children：", (GUILayoutOption[])(object)new GUILayoutOption[1] { GUILayout.Width(EditorGUIUtility.get_labelWidth()) });
-				GUI.set_color(Color.get_green());
-				EditorGUILayout.LabelField((group.children != null) ? group.children.Length.ToString() : "0", (GUILayoutOption[])(object)new GUILayoutOption[0]);
-				GUI.set_color(Color.get_white());
+				EditorGUILayout.BeginHorizontal((GUILayoutOption[])new GUILayoutOption[0]);
+				EditorGUILayout.LabelField("Children：", (GUILayoutOption[])new GUILayoutOption[1] { GUILayout.Width(EditorGUIUtility.labelWidth) });
+				GUI.color = (Color.green);
+				EditorGUILayout.LabelField((group.children != null) ? group.children.Length.ToString() : "0", (GUILayoutOption[])new GUILayoutOption[0]);
+				GUI.color = (Color.white);
 				EditorGUILayout.EndHorizontal();
 				EditorTools.EndContents();
 			}
@@ -135,36 +135,36 @@ namespace ZF.UI.Editor
 			//IL_016f: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0192: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01ad: Unknown result type (might be due to invalid IL or missing references)
-			if (EditorTools.DrawHeader($"{index}.{((Object)node).get_name()}"))
+			if (EditorTools.DrawHeader($"{index}.{(node).name}"))
 			{
 				EditorTools.BeginContents();
-				EditorGUILayout.BeginHorizontal((GUILayoutOption[])(object)new GUILayoutOption[0]);
-				EditorGUILayout.LabelField("GameObject", (GUILayoutOption[])(object)new GUILayoutOption[1] { GUILayout.Width(EditorGUIUtility.get_labelWidth()) });
-				EditorGUILayout.ObjectField((Object)(object)((Component)node).get_gameObject(), typeof(GameObject), true, (GUILayoutOption[])(object)new GUILayoutOption[0]);
+				EditorGUILayout.BeginHorizontal((GUILayoutOption[])new GUILayoutOption[0]);
+				EditorGUILayout.LabelField("GameObject", (GUILayoutOption[])new GUILayoutOption[1] { GUILayout.Width(EditorGUIUtility.labelWidth) });
+				EditorGUILayout.ObjectField(((Component)node).gameObject, typeof(GameObject), true, (GUILayoutOption[])new GUILayoutOption[0]);
 				EditorGUILayout.EndHorizontal();
-				EditorGUILayout.BeginHorizontal((GUILayoutOption[])(object)new GUILayoutOption[0]);
-				EditorGUILayout.LabelField("Name：", (GUILayoutOption[])(object)new GUILayoutOption[1] { GUILayout.Width(EditorGUIUtility.get_labelWidth()) });
-				GUI.set_color(Color.get_green());
-				EditorGUILayout.LabelField(node.Name, (GUILayoutOption[])(object)new GUILayoutOption[0]);
-				GUI.set_color(Color.get_white());
+				EditorGUILayout.BeginHorizontal((GUILayoutOption[])new GUILayoutOption[0]);
+				EditorGUILayout.LabelField("Name：", (GUILayoutOption[])new GUILayoutOption[1] { GUILayout.Width(EditorGUIUtility.labelWidth) });
+				GUI.color = (Color.green);
+				EditorGUILayout.LabelField(node.Name, (GUILayoutOption[])new GUILayoutOption[0]);
+				GUI.color  = (Color.white);
 				EditorGUILayout.EndHorizontal();
-				EditorGUILayout.BeginHorizontal((GUILayoutOption[])(object)new GUILayoutOption[0]);
-				EditorGUILayout.LabelField("Type：", (GUILayoutOption[])(object)new GUILayoutOption[1] { GUILayout.Width(EditorGUIUtility.get_labelWidth()) });
-				GUI.set_color(Color.get_green());
-				EditorGUILayout.LabelField(node.type, (GUILayoutOption[])(object)new GUILayoutOption[0]);
-				GUI.set_color(Color.get_white());
+				EditorGUILayout.BeginHorizontal((GUILayoutOption[])new GUILayoutOption[0]);
+				EditorGUILayout.LabelField("Type：", (GUILayoutOption[])new GUILayoutOption[1] { GUILayout.Width(EditorGUIUtility.labelWidth) });
+				GUI.color = (Color.green);
+				EditorGUILayout.LabelField(node.type, (GUILayoutOption[])new GUILayoutOption[0]);
+				GUI.color = (Color.white);
 				EditorGUILayout.EndHorizontal();
-				EditorGUILayout.BeginHorizontal((GUILayoutOption[])(object)new GUILayoutOption[0]);
-				EditorGUILayout.LabelField("Desc：", (GUILayoutOption[])(object)new GUILayoutOption[1] { GUILayout.Width(EditorGUIUtility.get_labelWidth()) });
-				GUI.set_color(Color.get_green());
-				EditorGUILayout.LabelField(node.desc, (GUILayoutOption[])(object)new GUILayoutOption[0]);
-				GUI.set_color(Color.get_white());
+				EditorGUILayout.BeginHorizontal((GUILayoutOption[])new GUILayoutOption[0]);
+				EditorGUILayout.LabelField("Desc：", (GUILayoutOption[])new GUILayoutOption[1] { GUILayout.Width(EditorGUIUtility.labelWidth) });
+				GUI.color = (Color.green);
+				EditorGUILayout.LabelField(node.desc, (GUILayoutOption[])new GUILayoutOption[0]);
+				GUI.color = (Color.white);
 				EditorGUILayout.EndHorizontal();
-				EditorGUILayout.BeginHorizontal((GUILayoutOption[])(object)new GUILayoutOption[0]);
-				EditorGUILayout.LabelField("Path：", (GUILayoutOption[])(object)new GUILayoutOption[1] { GUILayout.Width(EditorGUIUtility.get_labelWidth()) });
-				GUI.set_color(Color.get_green());
-				EditorGUILayout.LabelField(node.path, (GUILayoutOption[])(object)new GUILayoutOption[0]);
-				GUI.set_color(Color.get_white());
+				EditorGUILayout.BeginHorizontal((GUILayoutOption[])new GUILayoutOption[0]);
+				EditorGUILayout.LabelField("Path：", (GUILayoutOption[])new GUILayoutOption[1] { GUILayout.Width(EditorGUIUtility.labelWidth) });
+				GUI.color = (Color.green);
+				EditorGUILayout.LabelField(node.path, (GUILayoutOption[])new GUILayoutOption[0]);
+				GUI.color = (Color.white);
 				EditorGUILayout.EndHorizontal();
 				EditorTools.EndContents();
 			}
@@ -175,26 +175,26 @@ namespace ZF.UI.Editor
 			root.children = null;
 			List<ExportNode> list = new List<ExportNode>();
 			root.path = GetPath(root, null);
-			BuildExportTree(((Component)root).get_transform(), root, list);
+			BuildExportTree(((Component)root).transform, root, list);
 			root.children = list.ToArray();
 		}
 
 		private void BuildExportTree(Transform parent, ExportGroup root, List<ExportNode> children)
 		{
-			for (int i = 0; i < parent.get_childCount(); i++)
+			for (int i = 0; i < parent.childCount; i++)
 			{
 				Transform child = parent.GetChild(i);
 				ExportNode component = ((Component)child).GetComponent<ExportNode>();
-				if ((Object)(object)component != (Object)null)
+				if (component != null)
 				{
 					component.path = GetPath(component, root);
 					children.Add(component);
 					ExportGroup exportGroup = component as ExportGroup;
-					if ((Object)(object)exportGroup != (Object)null)
+					if (exportGroup != null)
 					{
 						exportGroup.children = null;
 						List<ExportNode> list = new List<ExportNode>();
-						BuildExportTree(((Component)exportGroup).get_transform(), exportGroup, list);
+						BuildExportTree(((Component)exportGroup).transform, exportGroup, list);
 						exportGroup.children = list.ToArray();
 						continue;
 					}
@@ -207,24 +207,24 @@ namespace ZF.UI.Editor
 		{
 			int num = 0;
 			StringBuilder stringBuilder = new StringBuilder();
-			if ((Object)(object)group == (Object)null)
+			if (group == null)
 			{
-				Transform transform = ((Component)node).get_transform();
-				if ((Object)(object)transform.get_parent() != (Object)null)
+				Transform transform = ((Component)node).transform;
+				if (transform.parent != null)
 				{
-					stringBuilder.Insert(0, "/" + ((Object)transform).get_name());
-					transform = transform.get_parent();
-					while ((Object)(object)transform != (Object)null && !((Object)(object)((Component)transform).GetComponent<ExportGroup>() != (Object)null))
+					stringBuilder.Insert(0, "/" + (transform).name);
+					transform = transform.parent;
+					while (transform != null && !(((Component)transform).GetComponent<ExportGroup>() != null))
 					{
-						stringBuilder.Insert(0, "/" + ((Object)transform).get_name());
+						stringBuilder.Insert(0, "/" + (transform).name);
 						if (++num == 100)
 						{
 							transform = null;
 							break;
 						}
-						transform = transform.get_parent();
+						transform = transform.parent;
 					}
-					if ((Object)(object)transform == (Object)null)
+					if (transform == null)
 					{
 						return null;
 					}
@@ -233,18 +233,18 @@ namespace ZF.UI.Editor
 			}
 			else
 			{
-				Transform val = ((Component)node).get_transform();
-				while ((Object)(object)val != (Object)null && !((Object)(object)val == (Object)(object)((Component)group).get_transform()))
+				Transform val = ((Component)node).transform;
+				while (val != null && !(val == ((Component)group).transform))
 				{
-					stringBuilder.Insert(0, "/" + ((Object)val).get_name());
+					stringBuilder.Insert(0, "/" + (val).name);
 					if (++num == 100)
 					{
 						val = null;
 						break;
 					}
-					val = val.get_parent();
+					val = val.parent;
 				}
-				if ((Object)(object)val == (Object)null)
+				if (val == null)
 				{
 					return null;
 				}

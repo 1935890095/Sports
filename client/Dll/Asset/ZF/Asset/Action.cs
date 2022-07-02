@@ -123,7 +123,7 @@ namespace ZF.Asset
 			{
 				return;
 			}
-			elapse += Time.get_deltaTime() * speed;
+			elapse += Time.deltaTime * speed;
 			while (pos < property.events.Length)
 			{
 				ActionProperty.Event e = property.events[pos];
@@ -191,7 +191,7 @@ namespace ZF.Asset
 			{
 				if (evt.anim == "attack")
 				{
-					int num = Time.get_frameCount() % 3;
+					int num = Time.frameCount % 3;
 					role.Play(evt.anim, speed, "attack_value=" + num);
 				}
 				else

@@ -32,19 +32,19 @@ namespace ZF.Core.Logging
 			case LoggerLevel.Info:
 			case LoggerLevel.Debug:
 			case LoggerLevel.Trace:
-				Debug.Log((object)$"[{logger_level}] '{logger_name}' {message}");
+				UnityEngine.Debug.Log((object)$"[{logger_level}] '{logger_name}' {message}");
 				break;
 			case LoggerLevel.Warn:
-				Debug.LogWarning((object)$"[{logger_level}] '{logger_name}' {message}");
+				UnityEngine.Debug.LogWarning((object)$"[{logger_level}] '{logger_name}' {message}");
 				break;
 			case LoggerLevel.Fatal:
 			case LoggerLevel.Error:
-				Debug.LogError((object)$"[{logger_level}] '{logger_name}' {message}");
+				UnityEngine.Debug.LogError((object)$"[{logger_level}] '{logger_name}' {message}");
 				break;
 			}
 			if (exception != null)
 			{
-				Debug.LogException(exception);
+				UnityEngine.Debug.LogException(exception);
 			}
 		}
 

@@ -7,7 +7,6 @@ namespace ZF.Asset.Attributes
 		public int[] optionValues { get; private set; }
 
 		public IntPopupAttribute(string label, string[] displayOptions, int[] optionValues)
-			: base(label, label)
 		{
 			this.displayOptions = displayOptions;
 			this.optionValues = optionValues;

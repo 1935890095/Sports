@@ -91,32 +91,32 @@ namespace ZF.UI.Editor
 			}
 			if (!forceOn && !flag)
 			{
-				GUI.set_backgroundColor(new Color(0.8f, 0.8f, 0.8f));
+				GUI.backgroundColor = (new Color(0.8f, 0.8f, 0.8f));
 			}
 			GUILayout.BeginHorizontal((GUILayoutOption[])(object)new GUILayoutOption[0]);
-			GUI.set_changed(false);
+			GUI.changed = false;
 			if (minimalistic)
 			{
 				text = ((!flag) ? ("►" + '\u200a' + text) : ("▼" + '\u200a' + text));
 				GUILayout.BeginHorizontal((GUILayoutOption[])(object)new GUILayoutOption[0]);
-				GUI.set_contentColor((!EditorGUIUtility.get_isProSkin()) ? new Color(0f, 0f, 0f, 0.7f) : new Color(1f, 1f, 1f, 0.7f));
-				if (!GUILayout.Toggle(true, text, GUIStyle.op_Implicit("PreToolbar2"), (GUILayoutOption[])(object)new GUILayoutOption[1] { GUILayout.MinWidth(20f) }))
+				GUI.contentColor = ((!EditorGUIUtility.isProSkin) ? new Color(0f, 0f, 0f, 0.7f) : new Color(1f, 1f, 1f, 0.7f));
+				if (!GUILayout.Toggle(true, text, "PreToolbar2", (GUILayoutOption[])(object)new GUILayoutOption[1] { GUILayout.MinWidth(20f) }))
 				{
 					flag = !flag;
 				}
-				GUI.set_contentColor(Color.get_white());
+				GUI.contentColor = Color.white;
 				GUILayout.EndHorizontal();
 			}
 			else
 			{
 				text = "<b><size=11>" + text + "</size></b>";
 				text = ((!flag) ? ("► " + text) : ("▼ " + text));
-				if (!GUILayout.Toggle(true, text, GUIStyle.op_Implicit("dragtab"), (GUILayoutOption[])(object)new GUILayoutOption[1] { GUILayout.MinWidth(20f) }))
+				if (!GUILayout.Toggle(true, text, "dragtab", (GUILayoutOption[])(object)new GUILayoutOption[1] { GUILayout.MinWidth(20f) }))
 				{
 					flag = !flag;
 				}
 			}
-			if (GUI.get_changed())
+			if (GUI.changed)
 			{
 				EditorPrefs.SetBool(key, flag);
 			}
@@ -125,7 +125,7 @@ namespace ZF.UI.Editor
 				GUILayout.Space(2f);
 			}
 			GUILayout.EndHorizontal();
-			GUI.set_backgroundColor(Color.get_white());
+			GUI.backgroundColor = (Color.white);
 			if (!forceOn && !flag)
 			{
 				GUILayout.Space(3f);
@@ -146,7 +146,7 @@ namespace ZF.UI.Editor
 			{
 				mEndHorizontal = true;
 				GUILayout.BeginHorizontal((GUILayoutOption[])(object)new GUILayoutOption[0]);
-				EditorGUILayout.BeginHorizontal(GUIStyle.op_Implicit("TextArea"), (GUILayoutOption[])(object)new GUILayoutOption[1] { GUILayout.MinHeight(10f) });
+				EditorGUILayout.BeginHorizontal("TextArea", (GUILayoutOption[])(object)new GUILayoutOption[1] { GUILayout.MinHeight(10f) });
 			}
 			else
 			{

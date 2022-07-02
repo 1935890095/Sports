@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using ZF.Asset.Properties;
+using Object = UnityEngine.Object;
+using Scene = UnityEngine.SceneManagement.Scene;
 using ZF.Core.Render;
 
 namespace ZF.Asset
@@ -26,13 +28,13 @@ namespace ZF.Asset
 			while (true)
 			{
 				scene = SceneManager.GetActiveScene();
-				if (((Scene)(ref scene)).get_name() == scenename)
+				if (((Scene)scene).name == scenename)
 				{
 					break;
 				}
 				yield return null;
 			}
-			GameObject[] roots = ((Scene)(ref scene)).GetRootGameObjects();
+			GameObject[] roots = ((Scene)scene).GetRootGameObjects();
 			for (int i = 0; i < roots.Length; i++)
 			{
 				property = roots[i].GetComponent<SceneProperty>();
@@ -67,14 +69,18 @@ namespace ZF.Asset
 		{
 		}
 
-		string IRenderResource.get_name()
+		string IRenderResource.name
 		{
+			get{
 			return base.name;
+			}
 		}
 
-		bool IRenderResource.get_complete()
+		bool IRenderResource.complete
 		{
+			get{
 			return base.complete;
+			}
 		}
 
 		void IRenderResource.Destroy()

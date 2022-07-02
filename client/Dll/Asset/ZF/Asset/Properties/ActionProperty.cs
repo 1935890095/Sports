@@ -58,7 +58,6 @@ namespace ZF.Asset.Properties
 		public Event[] events = Array.Empty<Event>();
 
 		public ActionProperty()
-			: this()
 		{
 		}
 

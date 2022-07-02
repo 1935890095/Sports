@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace ZF.Core.Render
 {
@@ -10,7 +11,6 @@ namespace ZF.Core.Render
 			public Action onUpdate;
 
 			public LoopKit()
-				: this()
 			{
 			}
 
@@ -48,7 +48,7 @@ namespace ZF.Core.Render
 				{
 					factory_ = new RenderFactory();
 					GameObject val = new GameObject("RenderFactory");
-					Object.DontDestroyOnLoad((Object)(object)val);
+					Object.DontDestroyOnLoad(val);
 					LoopKit loopKit = val.AddComponent<LoopKit>();
 					loopKit.onUpdate = delegate
 					{

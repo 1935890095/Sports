@@ -18,7 +18,6 @@ namespace ZF.UI
 		public string path;
 
 		public ExportNode()
-			: this()
 		{
 		}
 	}

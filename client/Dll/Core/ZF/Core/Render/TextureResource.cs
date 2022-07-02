@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using Object =UnityEngine.Object;
 using ZF.Core.Util;
 
 namespace ZF.Core.Render
@@ -60,9 +61,9 @@ namespace ZF.Core.Render
 			try
 			{
 				yield return request.SendWebRequest();
-				if (request.get_isNetworkError() || request.get_isHttpError())
+				if (request.isNetworkError || request.isHttpError)
 				{
-					Debug.LogError((object)request.get_error());
+					Debug.LogError((object)request.error);
 				}
 				else
 				{
@@ -71,7 +72,7 @@ namespace ZF.Core.Render
 			}
 			finally
 			{
-				((_003CLoad_003Ec__Iterator0)this)._003C_003E__Finally0();
+				
 			}
 			loading = false;
 			complete = true;

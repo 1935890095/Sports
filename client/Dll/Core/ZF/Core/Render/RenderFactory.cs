@@ -157,7 +157,7 @@ namespace ZF.Core.Render
 			}
 			else
 			{
-				float realtimeSinceStartup = Time.get_realtimeSinceStartup();
+				float realtimeSinceStartup = Time.realtimeSinceStartup;
 				idle[resource.name] = realtimeSinceStartup;
 			}
 		}
@@ -203,7 +203,7 @@ namespace ZF.Core.Render
 					}
 				}
 			}
-			float realtimeSinceStartup = Time.get_realtimeSinceStartup();
+			float realtimeSinceStartup = Time.realtimeSinceStartup;
 			Dictionary<string, float>.Enumerator enumerator2 = idle.GetEnumerator();
 			while (enumerator2.MoveNext())
 			{

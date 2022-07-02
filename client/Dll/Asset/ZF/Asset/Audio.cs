@@ -38,7 +38,7 @@ namespace ZF.Asset
 				loop_ = value;
 				if ((Object)(object)source != (Object)null)
 				{
-					source.set_loop(value);
+					source.loop = (value);
 				}
 			}
 		}
@@ -54,7 +54,7 @@ namespace ZF.Asset
 				volume_ = value;
 				if ((Object)(object)source != (Object)null)
 				{
-					source.set_volume(value);
+					source.volume = (value);
 				}
 			}
 		}
@@ -70,7 +70,7 @@ namespace ZF.Asset
 				distance_ = value;
 				if ((Object)(object)source != (Object)null)
 				{
-					source.set_maxDistance(value);
+					source.maxDistance = (value);
 				}
 			}
 		}
@@ -99,7 +99,7 @@ namespace ZF.Asset
 				playOnAwake_ = value;
 				if ((Object)(object)source != (Object)null)
 				{
-					source.set_playOnAwake(value);
+					source.playOnAwake = (value);
 				}
 			}
 		}
@@ -123,16 +123,16 @@ namespace ZF.Asset
 			source = base.gameObject.AddComponent<AudioSource>();
 			_003F val = source;
 			Object asset = resource.asset;
-			((AudioSource)val).set_clip((AudioClip)(object)((asset is AudioClip) ? asset : null));
-			source.set_loop(loop);
-			source.set_dopplerLevel(0f);
-			source.set_maxDistance(distance);
-			source.set_rolloffMode((AudioRolloffMode)1);
-			source.set_volume(volume);
-			source.set_playOnAwake(playOnAwake);
+			((AudioSource)val).clip((AudioClip)(object)((asset is AudioClip) ? asset : null));
+			source.loop = (loop);
+			source.dopplerLevel = (0f);
+			source.maxDistance = (distance);
+			source.rolloffMode = ((AudioRolloffMode)1);
+			source.volume = (volume);
+			source.playOnAwake = (playOnAwake);
 			if (duration == 0f)
 			{
-				duration = source.get_clip().get_length();
+				duration = source.clip.length;
 			}
 			if (status == Status.Playing)
 			{
@@ -196,7 +196,7 @@ namespace ZF.Asset
 			{
 				return;
 			}
-			life -= Time.get_deltaTime();
+			life -= Time.deltaTime;
 			if (life <= 0f && status != Status.Stopped)
 			{
 				if (loop)
@@ -217,7 +217,7 @@ namespace ZF.Asset
 
 		protected override void OnDestroy()
 		{
-			if (Object.op_Implicit((Object)(object)base.gameObject))
+			if (base.gameObject)
 			{
 				Object.Destroy((Object)(object)base.gameObject);
 				base.gameObject = null;
