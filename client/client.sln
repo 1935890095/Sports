@@ -13,6 +13,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IngameDebugConsole.Editor", "IngameDebugConsole.Editor.csproj", "{ff7c5f3a-817c-b3d6-fdc6-b93ff30bb2f7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dll.UI", "Dll.UI\Dll.UI.csproj", "{1327B8B6-5D2D-4BF9-916E-2FE777E9D62F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dll.UI.Editor", "Dll.UI.Editor\Dll.UI.Editor.csproj", "{5A96C0C9-7938-4EA5-8585-6B30F126EE6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dll.Core", "Dll.Core\Dll.Core.csproj", "{17864CB8-061E-4D9C-9A7A-05ADB7C39E9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asset", "Dll.Asset\Asset.csproj", "{F8837803-6672-44DB-AEA7-710A43199C57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +38,14 @@ Global
 		{ce9fc52f-b1bc-d313-fb79-5dd1af79a2af}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ff7c5f3a-817c-b3d6-fdc6-b93ff30bb2f7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ff7c5f3a-817c-b3d6-fdc6-b93ff30bb2f7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1327B8B6-5D2D-4BF9-916E-2FE777E9D62F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1327B8B6-5D2D-4BF9-916E-2FE777E9D62F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A96C0C9-7938-4EA5-8585-6B30F126EE6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A96C0C9-7938-4EA5-8585-6B30F126EE6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17864CB8-061E-4D9C-9A7A-05ADB7C39E9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17864CB8-061E-4D9C-9A7A-05ADB7C39E9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8837803-6672-44DB-AEA7-710A43199C57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8837803-6672-44DB-AEA7-710A43199C57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
