@@ -5,6 +5,6 @@ namespace XFX.Asset
 {
 	public interface ITexture : IRenderObject
 	{
-		Texture texture { get; }
+		UnityEngine.Texture texture { get; }
 	}
 }
