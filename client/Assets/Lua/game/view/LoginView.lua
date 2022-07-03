@@ -25,11 +25,7 @@ onLogin = function(self)
     end
     local option = {
         Account = account, 
-        Password = password,
-        Version = G.unity.Application.version,
-        DeviceId = "",
-        Os = G.unity.Os,
-        OsVersion = G.unity.OsVersion
+        Password = password
     }
     self.ctrl:login(option)
 end

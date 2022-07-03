@@ -1,0 +1,103 @@
+﻿
+
+<linker>
+
+	<assembly fullname="Assembly-CSharp">
+	    <type fullname="LuaPerfect.ObjectRef" preserve="all"/>
+		<type fullname="LuaPerfect.ObjectItem" preserve="all"/>
+		<type fullname="LuaPerfect.ObjectFormater" preserve="all"/>
+		<type fullname="XFX.Game.LuaApi" preserve="all"/>
+		<type fullname="XFX.Asset.IVideoClip" preserve="all"/>
+		<type fullname="XFX.Asset.IVideoPlayer" preserve="all"/>
+		<type fullname="XFX.Asset.IRenderTexture" preserve="all"/>
+		<type fullname="XFX.Asset.IPrimitive3D" preserve="all"/>
+		<type fullname="XFX.Asset.ICamera" preserve="all"/>
+		<type fullname="XFX.Asset.ILight" preserve="all"/>
+		<type fullname="XFX.Asset.IReminder" preserve="all"/>
+		<type fullname="XFX.Asset.IFaceEffect" preserve="all"/>
+		<type fullname="XFX.Asset.ICanvas" preserve="all"/>
+		<type fullname="XFX.Game.LuaApi+Action" preserve="all"/>
+		<type fullname="XFX.Game.LuaApi+Asset" preserve="all"/>
+		<type fullname="XFX.Game.LuaApi+Coloring" preserve="all"/>
+		<type fullname="XFX.Game.LuaApi+Http" preserve="all"/>
+		<type fullname="XFX.Game.LuaApi+NavMesh" preserve="all"/>
+		<type fullname="XFX.Game.LuaApi+Net" preserve="all"/>
+		<type fullname="XFX.Game.LuaApi+Scene" preserve="all"/>
+		<type fullname="XFX.Game.LuaApi+Sdk" preserve="all"/>
+		<type fullname="XFX.Game.LuaApi+Shaking" preserve="all"/>
+		<type fullname="XFX.Game.LuaApi+Tweening" preserve="all"/>
+		<type fullname="XFX.Game.LuaApi+Update" preserve="all"/>
+		<type fullname="XFX.Game.LuaApi+View" preserve="all"/>
+		<type fullname="XFX.Game.LuaApi+PathExt" preserve="all"/>
+		<type fullname="XFX.Game.LuaApi+Cache" preserve="all"/>
+		<type fullname="XFX.Game.LuaApi+Log" preserve="all"/>
+		<type fullname="XFX.Game.LuaApi+Debug" preserve="all"/>
+		<type fullname="XFX.Game.LuaApi+Screen" preserve="all"/>
+		<type fullname="XFX.Game.LuaApi+Util" preserve="all"/>
+		
+	</assembly>
+
+	<assembly fullname="Core">
+	    <type fullname="XFX.Core.Render.IRenderObject" preserve="all"/>
+		<type fullname="XFX.Core.Render.IRenderComponent" preserve="all"/>
+		
+	</assembly>
+
+	<assembly fullname="Asset">
+	    <type fullname="XFX.Asset.IAudio" preserve="all"/>
+		<type fullname="XFX.Asset.IEffect" preserve="all"/>
+		<type fullname="XFX.Asset.ITexture" preserve="all"/>
+		<type fullname="XFX.Asset.IRole" preserve="all"/>
+		<type fullname="XFX.Asset.IRoot" preserve="all"/>
+		<type fullname="XFX.Asset.IAction" preserve="all"/>
+		
+	</assembly>
+
+	<assembly fullname="UnityEngine.CoreModule">
+	    <type fullname="UnityEngine.Vector2" preserve="all"/>
+		<type fullname="UnityEngine.Vector3" preserve="all"/>
+		<type fullname="UnityEngine.Vector4" preserve="all"/>
+		<type fullname="UnityEngine.Color" preserve="all"/>
+		<type fullname="UnityEngine.Quaternion" preserve="all"/>
+		<type fullname="UnityEngine.Ray" preserve="all"/>
+		<type fullname="UnityEngine.Bounds" preserve="all"/>
+		<type fullname="UnityEngine.Ray2D" preserve="all"/>
+		<type fullname="UnityEngine.Color32" preserve="all"/>
+		<type fullname="UnityEngine.Rect" preserve="all"/>
+		<type fullname="UnityEngine.RectTransform" preserve="all"/>
+		<type fullname="UnityEngine.Resources" preserve="all"/>
+		<type fullname="UnityEngine.TextAsset" preserve="all"/>
+		<type fullname="UnityEngine.Application" preserve="all"/>
+		<type fullname="UnityEngine.Screen" preserve="all"/>
+		<type fullname="UnityEngine.PlayerPrefs" preserve="all"/>
+		<type fullname="UnityEngine.Time" preserve="all"/>
+		<type fullname="UnityEngine.Shader" preserve="all"/>
+		<type fullname="UnityEngine.KeyCode" preserve="all"/>
+		<type fullname="UnityEngine.SystemLanguage" preserve="all"/>
+		<type fullname="UnityEngine.SortingLayer" preserve="all"/>
+		<type fullname="UnityEngine.NetworkReachability" preserve="all"/>
+		
+	</assembly>
+
+	<assembly fullname="UnityEngine.InputLegacyModule">
+	    <type fullname="UnityEngine.TouchPhase" preserve="all"/>
+		
+	</assembly>
+
+	<assembly fullname="UnityEngine.AudioModule">
+	    <type fullname="UnityEngine.AudioListener" preserve="all"/>
+		
+	</assembly>
+
+	<assembly fullname="UnityEngine.PhysicsModule">
+	    <type fullname="UnityEngine.MeshCollider" preserve="all"/>
+		
+	</assembly>
+
+	<assembly fullname="UnityEngine.AIModule">
+	    <type fullname="UnityEngine.AI.NavMeshAgent" preserve="all"/>
+		<type fullname="UnityEngine.AI.NavMeshObstacle" preserve="all"/>
+		
+	</assembly>
+
+</linker>

@@ -1,5 +1,4 @@
 
-
 namespace XFX.Game {
     using System.Collections;
     using UnityEngine;

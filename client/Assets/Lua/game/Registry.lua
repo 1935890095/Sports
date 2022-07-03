@@ -23,7 +23,7 @@ Registry.preloadServices = {
 
 
 Registry.preloadCtrls = {
-    LoadingCtrl = require("game.ctrl.LoadingCtrl"),
+    LoadingCtrl = require("game.ctrl.LoadingCtrl")
     -- UpdateCtrl = require("game.ctrl.UpdateCtrl"),
     -- MsgBoxCtrl = require("game.ctrl.MsgBoxCtrl"),
 }
@@ -35,7 +35,6 @@ Registry.ctrls = {
 
 -- 视图
 Registry.views = {
-    LoadingView = require("game.view.LoadingView"),
     LoginView = require("game.view.LoginView")
 }
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 607883834940331432}
   - component: {fileID: 816714824266420804}
   - component: {fileID: 4805834628555371402}
-  - component: {fileID: 8428174867883395454}
+  - component: {fileID: 7503887005805395139}
   m_Layer: 5
   m_Name: enter
   m_TagString: Untagged
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8428174867883395454
+--- !u!114 &7503887005805395139
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 275868871269504025}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 541235499, guid: d5f8e81cfd45ebe489f2477da446024a, type: 3}
+  m_Script: {fileID: -1656832789, guid: 4e002de96ce8f4a40a055f34a1f4d3ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Name: enter
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 2694432857812444058}
   - component: {fileID: 1382235131999272303}
   - component: {fileID: 8640006452713264258}
-  - component: {fileID: 1428263512317808085}
+  - component: {fileID: 6246006021417170669}
   m_Layer: 5
   m_Name: password
   m_TagString: Untagged
@@ -358,7 +358,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
---- !u!114 &1428263512317808085
+--- !u!114 &6246006021417170669
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -367,7 +367,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3113797374161204776}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 541235499, guid: d5f8e81cfd45ebe489f2477da446024a, type: 3}
+  m_Script: {fileID: -1656832789, guid: 4e002de96ce8f4a40a055f34a1f4d3ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Name: password
@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: 3428844737310007111}
   - component: {fileID: 641240331200479025}
   - component: {fileID: 1075454285573771204}
-  - component: {fileID: 4416010623103957893}
+  - component: {fileID: 602186889305444281}
   m_Layer: 5
   m_Name: account
   m_TagString: Untagged
@@ -595,7 +595,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
---- !u!114 &4416010623103957893
+--- !u!114 &602186889305444281
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -604,7 +604,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7059942545050944983}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 541235499, guid: d5f8e81cfd45ebe489f2477da446024a, type: 3}
+  m_Script: {fileID: -1656832789, guid: 4e002de96ce8f4a40a055f34a1f4d3ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Name: account
@@ -816,7 +816,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8184903188063798068}
-  - component: {fileID: 2981665280384083236}
+  - component: {fileID: 191752235654333848}
   m_Layer: 5
   m_Name: pivot
   m_TagString: Untagged
@@ -844,7 +844,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2981665280384083236
+--- !u!114 &191752235654333848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -853,7 +853,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8184903188063798069}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 541235499, guid: d5f8e81cfd45ebe489f2477da446024a, type: 3}
+  m_Script: {fileID: -1656832789, guid: 4e002de96ce8f4a40a055f34a1f4d3ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Name: pivot
@@ -872,8 +872,9 @@ GameObject:
   - component: {fileID: 8184903188753511027}
   - component: {fileID: 8184903188753511036}
   - component: {fileID: 8184903188753511037}
-  - component: {fileID: 8380951922336026271}
-  - component: {fileID: 777060264594870988}
+  - component: {fileID: 424282882961785848}
+  - component: {fileID: 8684313361258600229}
+  - component: {fileID: 8169908070012303633}
   m_Layer: 5
   m_Name: LoginView
   m_TagString: Untagged
@@ -962,7 +963,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8380951922336026271
+--- !u!114 &424282882961785848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -971,19 +972,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 8184903188753511038}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 2078125463, guid: 7cc4c037d0ec34b06bce795ddca7942d, type: 3}
+  m_Script: {fileID: -201637262, guid: 4e002de96ce8f4a40a055f34a1f4d3ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: LoginView
+  type: Canvas
+  desc: 
+  path: 
+  children:
+  - {fileID: 191752235654333848}
+  - {fileID: 602186889305444281}
+  - {fileID: 6246006021417170669}
+  - {fileID: 7503887005805395139}
+--- !u!114 &8684313361258600229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8184903188753511038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -216446966, guid: 742e4319b69e2db468e842d3c5c11220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dependencies: []
+--- !u!114 &8169908070012303633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8184903188753511038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1837674078, guid: 742e4319b69e2db468e842d3c5c11220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dependencies:
-  - name: 
-    path: res/ui/atlas/login.atlas
-    dependence: {fileID: 0}
-    assets: []
-  - name: login_bg
-    path: res/ui/tex/login_bg.tex
-    dependence: {fileID: 2800000, guid: d211229c8da93d240860d3e4fa55e27d, type: 3}
-    assets:
-    - {fileID: 8184903189066244924}
   - name: normal
     path: res/ui/font/normal.font
     dependence: {fileID: 12800000, guid: 5e0571dcd61eff044832b2ed71c8d022, type: 3}
@@ -993,27 +1019,6 @@ MonoBehaviour:
     - {fileID: 983874884514663338}
     - {fileID: 2512632107227641354}
     - {fileID: 4487664656946975661}
---- !u!114 &777060264594870988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8184903188753511038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1795180751, guid: d5f8e81cfd45ebe489f2477da446024a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: LoginView
-  type: Canvas
-  desc: 
-  path: 
-  children:
-  - {fileID: 2981665280384083236}
-  - {fileID: 4416010623103957893}
-  - {fileID: 1428263512317808085}
-  - {fileID: 8428174867883395454}
 --- !u!1 &8184903189066244926
 GameObject:
   m_ObjectHideFlags: 0
@@ -1072,7 +1077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.508366, g: 0.754717, b: 0.74301094, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

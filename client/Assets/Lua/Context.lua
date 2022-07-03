@@ -1,7 +1,6 @@
 --[[
   @Desc Lua全局上下文
   @Author: xfx
-  @Date: 2020-03-20 17:51:57
 --]]
 local json = require("dkjson")
 local Context = {}
@@ -39,7 +38,7 @@ function Context:load()
     G.json = json
 
     -- lua api
-    G.api = CS.ZF.Game.LuaApi
+    G.api = CS.XFX.Game.LuaApi
 
     -- util
     G.common = require("util.Common")
