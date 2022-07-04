@@ -18,6 +18,7 @@ end
 
 --登录
 onLogin = function(self)
+    print("***************")
     local account = self:InputField(self.view.account, View.API.InputField.text)
     local password = self:InputField(self.view.password, View.API.InputField.text)
     if string.len(account)<= 0 or string.len(password)<= 0 then
@@ -27,6 +28,7 @@ onLogin = function(self)
         Account = account, 
         Password = password
     }
+    print("***************11")
     self.ctrl:login(option)
 end
 

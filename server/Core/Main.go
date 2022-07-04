@@ -1,73 +1,45 @@
 package main
 
 import (
-	"fmt"
-	"net"
+	"github.com/asynkron/protoactor-go/actor"
+	"github.com/asynkron/protoactor-go/remote"
 )
 
-var (
-	maxRead  = 25
-	msgStop  = []byte("cmdStop")
-	msgStart = []byte("cmdContinue")
-)
+// define root context
+
+func notifyAll(context actor.Context, clients *actor.PIDSet, message interface{}) {
+	for _, client := range clients.Values() {
+		context.Send(client, message)
+	}
+}
 
 func main() {
+	system := actor.NewActorSystem()
+	config := remote.Configure("127.0.0.1", 8080)
+	remoter := remote.NewRemote(system, config)
+	remoter.Start()
 
-	hostAndPort := "localhost:54321"
-	listener := initServer(hostAndPort)
-	for {
-		conn, err := listener.Accept()
-		checkError(err, "Accept: ")
-		go connectionHandler(conn)
-	}
-}
-func initServer(hostAndPort string) *net.TCPListener {
-	serverAddr, err := net.ResolveTCPAddr("tcp", hostAndPort)
-	checkError(err, "Resolving address:port failed: '"+hostAndPort+"'")
-	//listener, err := net.ListenTCP("tcp", serverAddr)
-	listener, err := net.ListenTCP("tcp", serverAddr)
-	checkError(err, "ListenTCP: ")
-	println("Listening to: ", listener.Addr().String())
-	return listener
-}
-func connectionHandler(conn net.Conn) {
-	connFrom := conn.RemoteAddr().String()
-	println("Connection from: ", connFrom)
-	talktoclients(conn)
-	for {
-		var ibuf []byte = make([]byte, maxRead+1)
-		length, err := conn.Read(ibuf[0:maxRead])
-		ibuf[maxRead] = 0 // to prevent overflow
-		switch err {
-		case nil:
-			handleMsg(length, err, ibuf)
+	// clients := actor.NewPIDSet()
 
-		default:
-			goto DISCONNECT
-		}
-	}
-DISCONNECT:
-	err := conn.Close()
-	println("Closed connection:", connFrom)
-	checkError(err, "Close:")
-}
-func talktoclients(to net.Conn) {
-	wrote, err := to.Write(msgStart)
-	checkError(err, "Write: wrote "+string(wrote)+" bytes.")
-}
-func handleMsg(length int, err error, msg []byte) {
-	if length > 0 {
-		for i := 0; ; i++ {
-			if msg[i] == 0 {
-				break
-			}
-		}
-		fmt.Printf("Received data: %v", string(msg[0:length]))
-		fmt.Println("   length:", length)
-	}
-}
-func checkError(error error, info string) {
-	if error != nil {
-		panic("ERROR: " + info + " " + error.Error()) // terminate program
-	}
+	// props := actor.PropsFromFunc(func(context actor.Context) {
+	// 	switch msg := context.Message().(type) {
+	// 	case *messages.Connect:
+	// 		log.Printf("Client %v connected", msg.Sender)
+	// 		clients.Add(msg.Sender)
+	// 		context.Send(msg.Sender, &messages.Connected{Message: "Welcome!"})
+	// 	case *messages.SayRequest:
+	// 		notifyAll(context, clients, &messages.SayResponse{
+	// 			UserName: msg.UserName,
+	// 			Message:  msg.Message,
+	// 		})
+	// 	case *messages.NickRequest:
+	// 		notifyAll(context, clients, &messages.NickResponse{
+	// 			OldUserName: msg.OldUserName,
+	// 			NewUserName: msg.NewUserName,
+	// 		})
+	// 	}
+	// })
+
+	// _, _ = system.Root.SpawnNamed(props, "chatserver")
+	// _, _ = console.ReadLine()
 }
