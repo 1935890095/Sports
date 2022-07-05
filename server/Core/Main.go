@@ -1,6 +1,11 @@
 package main
 
 import (
+	"log"
+
+	"xiao/messages"
+
+	console "github.com/asynkron/goconsole"
 	"github.com/asynkron/protoactor-go/actor"
 	"github.com/asynkron/protoactor-go/remote"
 )
@@ -19,27 +24,27 @@ func main() {
 	remoter := remote.NewRemote(system, config)
 	remoter.Start()
 
-	// clients := actor.NewPIDSet()
+	clients := actor.NewPIDSet()
 
-	// props := actor.PropsFromFunc(func(context actor.Context) {
-	// 	switch msg := context.Message().(type) {
-	// 	case *messages.Connect:
-	// 		log.Printf("Client %v connected", msg.Sender)
-	// 		clients.Add(msg.Sender)
-	// 		context.Send(msg.Sender, &messages.Connected{Message: "Welcome!"})
-	// 	case *messages.SayRequest:
-	// 		notifyAll(context, clients, &messages.SayResponse{
-	// 			UserName: msg.UserName,
-	// 			Message:  msg.Message,
-	// 		})
-	// 	case *messages.NickRequest:
-	// 		notifyAll(context, clients, &messages.NickResponse{
-	// 			OldUserName: msg.OldUserName,
-	// 			NewUserName: msg.NewUserName,
-	// 		})
-	// 	}
-	// })
+	props := actor.PropsFromFunc(func(context actor.Context) {
+		switch msg := context.Message().(type) {
+		case *messages.Connect:
+			log.Printf("Client %v connected", msg.Sender)
+			clients.Add(msg.Sender)
+			context.Send(msg.Sender, &messages.Connected{Message: "Welcome!"})
+		case *messages.SayRequest:
+			notifyAll(context, clients, &messages.SayResponse{
+				UserName: msg.UserName,
+				Message:  msg.Message,
+			})
+		case *messages.NickRequest:
+			notifyAll(context, clients, &messages.NickResponse{
+				OldUserName: msg.OldUserName,
+				NewUserName: msg.NewUserName,
+			})
+		}
+	})
 
-	// _, _ = system.Root.SpawnNamed(props, "chatserver")
-	// _, _ = console.ReadLine()
+	_, _ = system.Root.SpawnNamed(props, "chatserver")
+	_, _ = console.ReadLine()
 }

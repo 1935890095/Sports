@@ -51,6 +51,9 @@ function Proto:send(pid, data)
 end
 
 function Proto:fire(pid, data)
+    if pid == 0 then
+        return
+    end
     if not data then
         G.log.error("fire data is nil")
         return

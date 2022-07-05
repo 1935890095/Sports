@@ -1,8 +1,9 @@
 module xiao
 
-go 1.17
+go 1.18
 
 require (
+	github.com/asynkron/goconsole v0.0.0-20160504192649-bfa12eebf716
 	github.com/asynkron/protoactor-go v0.0.0-20220616142548-afd2d973a1d1
 	google.golang.org/protobuf v1.28.0
 )
