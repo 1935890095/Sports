@@ -1,0 +1,158 @@
+syntax = "proto3";
+package proto.node;
+import "google/protobuf/any.proto";
+
+message Ping {
+    int32 Index = 1;
+    string Address = 2;
+    string Id = 3;
+}
+
+message Pong {
+    int32 Index = 1;
+}
+
+message PID {
+    string Address = 1;
+    string Id = 2;
+}
+
+// 节点之间流通的玩家数据
+message Player {
+    bool IsRobot    = 1;
+    int64 Id        = 2;
+    string Name     = 3;
+    int32 Level     = 4;
+    int32 Money     = 5;
+    string Head     = 6;
+}
+
+// 大厅请求匹配
+message L2MRequest {
+    bool New            = 1; // 是否创建游戏
+    Player Player       = 2; // 玩家信息
+    int32 RoomId        = 3; // 房间id
+    int32 NumOfPlayers  = 4; // 房间人数
+    int64 ExcludeId     = 5; // 排除的游戏id
+}
+
+// 大厅匹配结果
+message L2MResponse {
+    bool Success       = 1; // 是否成功
+    PID RoomPID        = 2; // 游戏PID
+}
+
+// match请求创建游戏
+message M2GCreateRequest {
+    Player Player       = 1;
+    int64 GameId        = 2;
+    int32 RoomId        = 3;
+    PID MatchPID        = 4;
+    int32 NumOfPlayers  = 5;
+}
+
+// match创建游戏结果
+message M2GCreateResponse {
+    bool Success       = 1; // 是否成功
+    PID RoomPID        = 2; // 游戏PID
+}
+
+// match请求game允许玩家进入房间
+message M2GEnterRequest {
+    int64 PlayerId     = 1;
+}
+
+message M2GEnterResponse {
+    
+}
+
+// 大厅玩家请求进入
+message L2GEnterRequest {
+    Player Player = 1;
+    PID PID = 2;
+}
+
+message L2GEnterResponse {
+    bool Success = 1;
+    int64 GameId = 2;
+}
+
+// 大厅玩家请求退出
+message L2GLeaveRequest {
+    Player Player = 1;
+}
+
+message L2GLeaveResponse {
+    
+}
+
+message L2GPlayerMessage {
+    int64 PlayerId = 1;
+    google.protobuf.Any RealMessage = 2;
+}
+
+message G2LGameMessage {
+    google.protobuf.Any RealMessage = 1;
+}
+
+// 玩家进入
+message G2MPlayerEnter {
+    int64 GameId            = 1;
+    int64 PlayerId          = 2;
+    int32 NumOfPlay         = 3; // 打牌人数
+    int32 NumOfWatch        = 4; // 观战人数
+}
+
+// 玩家离开
+message G2MPlayerLeave {
+    int64 GameId            = 1;
+    int64 PlayerId          = 2;
+    int32 NumOfPlay         = 3; // 打牌人数
+    int32 NumOfWatch        = 4; // 观战人数
+}
+
+// 打牌观战人数变化
+message G2MPlayerChanged {
+    int64 GameId            = 1;
+    int32 NumOfPlay         = 2; // 打牌人数
+    int32 NumOfWatch        = 3; // 观战人数
+}
+
+message G2LKickPlayer {
+    int32 Reason = 1;
+}
+
+message G2LCostRequest {
+    int32 Money = 1;
+}
+
+message G2LCostResponse {
+    bool Success = 1;
+    int32 Money = 2;
+}
+
+message L2MCountsRequest {
+}
+
+message L2MCountsResponse {
+    repeated int32 RoomIds = 1;
+    repeated int32 Counts = 2;
+}
+
+message L2GPlayerDisconnected {
+}
+
+message G2MAllocRobot {
+    string Address  = 1;
+    string Id       = 2;
+    int32 RoomId    = 3;
+}
+
+message G2LAutoBuyRequest {
+    int32 RoomId = 1;
+}
+
+message G2LAutoBuyResponse {
+    int32 Money = 1;
+    bool Success = 2;
+}
