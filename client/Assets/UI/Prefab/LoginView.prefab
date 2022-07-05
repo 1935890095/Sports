@@ -873,7 +873,6 @@ GameObject:
   - component: {fileID: 8184903188753511036}
   - component: {fileID: 8184903188753511037}
   - component: {fileID: 424282882961785848}
-  - component: {fileID: 8684313361258600229}
   - component: {fileID: 8169908070012303633}
   m_Layer: 5
   m_Name: LoginView
@@ -984,19 +983,6 @@ MonoBehaviour:
   - {fileID: 602186889305444281}
   - {fileID: 6246006021417170669}
   - {fileID: 7503887005805395139}
---- !u!114 &8684313361258600229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8184903188753511038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -216446966, guid: 742e4319b69e2db468e842d3c5c11220, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dependencies: []
 --- !u!114 &8169908070012303633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1010,6 +996,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dependencies:
+  - name: 
+    path: res/ui/atlas/login.atlas
+    dependence: {fileID: 0}
+    assets: []
   - name: normal
     path: res/ui/font/normal.font
     dependence: {fileID: 12800000, guid: 5e0571dcd61eff044832b2ed71c8d022, type: 3}
